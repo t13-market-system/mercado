@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "R5/exH42Sh28eSJqChrhhK82LbrqJ32pBrp6lDVrxLk16z1qnA/L45L3CSc1MTi0yPSyfx6LJgWahl0zMVBnaw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\diogo.fsilva1\\source\\repos\\testegit\\SistemaLogin\\SistemaLogin.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\diogo.fsilva1\\.nuget\\packages\\bcrypt.net-next\\4.1.0\\bcrypt.net-next.4.1.0.nupkg.sha512",
+    "C:\\Users\\diogo.fsilva1\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
+    "C:\\Users\\diogo.fsilva1\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.2\\microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
+    "C:\\Users\\diogo.fsilva1\\.nuget\\packages\\mysqlconnector\\2.5.0\\mysqlconnector.2.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
