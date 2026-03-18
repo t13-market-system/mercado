@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\diogo.fsilva1\\source\\repos\\testegit\\SistemaLogin\\SistemaLogin.csproj": {}
+    "C:\\Users\\diogo.fsilva1\\source\\repos\\mercado\\SistemaLogin.csproj": {}
   },
   "projects": {
-    "C:\\Users\\diogo.fsilva1\\source\\repos\\testegit\\SistemaLogin\\SistemaLogin.csproj": {
+    "C:\\Users\\diogo.fsilva1\\source\\repos\\mercado\\SistemaLogin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\diogo.fsilva1\\source\\repos\\testegit\\SistemaLogin\\SistemaLogin.csproj",
+        "projectUniqueName": "C:\\Users\\diogo.fsilva1\\source\\repos\\mercado\\SistemaLogin.csproj",
         "projectName": "SistemaLogin",
-        "projectPath": "C:\\Users\\diogo.fsilva1\\source\\repos\\testegit\\SistemaLogin\\SistemaLogin.csproj",
+        "projectPath": "C:\\Users\\diogo.fsilva1\\source\\repos\\mercado\\SistemaLogin.csproj",
         "packagesPath": "C:\\Users\\diogo.fsilva1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\diogo.fsilva1\\source\\repos\\testegit\\SistemaLogin\\obj\\",
+        "outputPath": "C:\\Users\\diogo.fsilva1\\source\\repos\\mercado\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\diogo.fsilva1\\AppData\\Roaming\\NuGet\\NuGet.Config",
