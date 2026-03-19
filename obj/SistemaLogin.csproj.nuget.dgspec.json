@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\diogo.fsilva1\\source\\repos\\testegit\\SistemaLogin\\SistemaLogin.csproj": {}
+    "C:\\Users\\brayan.rpereira\\source\\repos\\mercadogit\\SistemaLogin.csproj": {}
   },
   "projects": {
-    "C:\\Users\\diogo.fsilva1\\source\\repos\\testegit\\SistemaLogin\\SistemaLogin.csproj": {
+    "C:\\Users\\brayan.rpereira\\source\\repos\\mercadogit\\SistemaLogin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\diogo.fsilva1\\source\\repos\\testegit\\SistemaLogin\\SistemaLogin.csproj",
+        "projectUniqueName": "C:\\Users\\brayan.rpereira\\source\\repos\\mercadogit\\SistemaLogin.csproj",
         "projectName": "SistemaLogin",
-        "projectPath": "C:\\Users\\diogo.fsilva1\\source\\repos\\testegit\\SistemaLogin\\SistemaLogin.csproj",
-        "packagesPath": "C:\\Users\\diogo.fsilva1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\diogo.fsilva1\\source\\repos\\testegit\\SistemaLogin\\obj\\",
+        "projectPath": "C:\\Users\\brayan.rpereira\\source\\repos\\mercadogit\\SistemaLogin.csproj",
+        "packagesPath": "C:\\Users\\brayan.rpereira\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\brayan.rpereira\\source\\repos\\mercadogit\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\diogo.fsilva1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\brayan.rpereira\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
