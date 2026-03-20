@@ -1,5 +1,3 @@
-using System.Net.Http.Headers;
-
 namespace SistemaLogin
 {
     public partial class Form1 : Form
@@ -25,25 +23,25 @@ namespace SistemaLogin
             string username = tb_usuario.Text.Trim();
             string password = tb_senha.Text;
 
-            // ValidaÁ„o b·sica de campos vazios
+            // Valida√ß√£o b√°sica de campos vazios
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Preencha todos os campos!", "ValidaÁ„o", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Preencha todos os campos!", "Valida√ß√£o", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Chama o serviÁo para autenticar
+            // Chama o servi√ßo para autenticar
             var authService = new AuthService();
             bool isValid = authService.AuthenticateUser(username, password);
 
             if (isValid)
             {
                 MessageBox.Show("Login realizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                // Aqui vocÍ pode ocultar a tela de login e abrir o formul·rio principal do sistema
+                // Aqui voc√™ pode ocultar a tela de login e abrir o formul√°rio principal do sistema
             }
             else
             {
-                MessageBox.Show("Usu·rio ou senha incorretos!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Usu√°rio ou senha incorretos!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
