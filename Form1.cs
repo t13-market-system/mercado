@@ -1,3 +1,5 @@
+using System.Net.Http.Headers;
+
 namespace SistemaLogin
 {
     public partial class Form1 : Form
@@ -43,6 +45,18 @@ namespace SistemaLogin
             {
                 MessageBox.Show("Usuário ou senha incorretos!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            F_FornecedorCadastro f_FornecedorCadastro = new F_FornecedorCadastro();
+            f_FornecedorCadastro.ShowDialog(this);
+        }
+
+        private void VendasCadastro_Click(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            F_VendasCadastro f_VendasCadastro = new F_VendasCadastro();
+            f_VendasCadastro.ShowDialog(this);
         }
     }
 }

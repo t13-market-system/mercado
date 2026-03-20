@@ -44,7 +44,7 @@
             // button1
             // 
             button1.BackColor = SystemColors.Highlight;
-            button1.Location = new Point(25, 310);
+            button1.Location = new Point(25, 292);
             button1.Name = "button1";
             button1.Size = new Size(530, 39);
             button1.TabIndex = 0;
@@ -122,7 +122,7 @@
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(234, 357);
+            linkLabel1.Location = new Point(256, 334);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(65, 15);
             linkLabel1.TabIndex = 8;
@@ -135,7 +135,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
-            ClientSize = new Size(567, 385);
+            ClientSize = new Size(567, 384);
             Controls.Add(linkLabel1);
             Controls.Add(label4);
             Controls.Add(label3);

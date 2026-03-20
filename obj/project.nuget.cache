@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "enaKXZjMDgEX7LdKccZNrcwGsJYuIg5HNiDngJ93UAHuu26hAOACxp6GQEpgcyqaX+YZ2raHRMiTBlg+BHhpdg==",
+  "dgSpecHash": "zrIc0BliahIxQYJ/b7llJquWLVWFuEfWx4vXirnmUjJ4j8PQT13WjUW0K7KtKa5vLEzp4brVyRNXDVIsIegqDg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\diogo.fsilva1\\source\\repos\\mercado\\SistemaLogin.csproj",
+  "projectFilePath": "C:\\Users\\thiago.silva37\\source\\repos\\t13-market-system\\mercado\\SistemaLogin.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\diogo.fsilva1\\.nuget\\packages\\bcrypt.net-next\\4.1.0\\bcrypt.net-next.4.1.0.nupkg.sha512",
-    "C:\\Users\\diogo.fsilva1\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
-    "C:\\Users\\diogo.fsilva1\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.2\\microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
-    "C:\\Users\\diogo.fsilva1\\.nuget\\packages\\mysqlconnector\\2.5.0\\mysqlconnector.2.5.0.nupkg.sha512"
+    "C:\\Users\\thiago.silva37\\.nuget\\packages\\bcrypt.net-next\\4.1.0\\bcrypt.net-next.4.1.0.nupkg.sha512",
+    "C:\\Users\\thiago.silva37\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
+    "C:\\Users\\thiago.silva37\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.2\\microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
+    "C:\\Users\\thiago.silva37\\.nuget\\packages\\mysqlconnector\\2.5.0\\mysqlconnector.2.5.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -243,19 +243,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\diogo.fsilva1\\.nuget\\packages\\": {}
+    "C:\\Users\\thiago.silva37\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\diogo.fsilva1\\source\\repos\\mercado\\SistemaLogin.csproj",
+      "projectUniqueName": "C:\\Users\\thiago.silva37\\source\\repos\\t13-market-system\\mercado\\SistemaLogin.csproj",
       "projectName": "SistemaLogin",
-      "projectPath": "C:\\Users\\diogo.fsilva1\\source\\repos\\mercado\\SistemaLogin.csproj",
-      "packagesPath": "C:\\Users\\diogo.fsilva1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\diogo.fsilva1\\source\\repos\\mercado\\obj\\",
+      "projectPath": "C:\\Users\\thiago.silva37\\source\\repos\\t13-market-system\\mercado\\SistemaLogin.csproj",
+      "packagesPath": "C:\\Users\\thiago.silva37\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\thiago.silva37\\source\\repos\\t13-market-system\\mercado\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\diogo.fsilva1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\thiago.silva37\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
