@@ -39,6 +39,7 @@
             label4 = new Label();
             linkLabel1 = new LinkLabel();
             linkLabel2 = new LinkLabel();
+            btn_tela_de_vendas = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -136,11 +137,21 @@
             linkLabel2.AutoSize = true;
             linkLabel2.Location = new Point(404, 34);
             linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(33, 15);
+            linkLabel2.Size = new Size(34, 15);
             linkLabel2.TabIndex = 9;
             linkLabel2.TabStop = true;
             linkLabel2.Text = "Teste";
             linkLabel2.LinkClicked += linkLabel2_LinkClicked;
+            // 
+            // btn_tela_de_vendas
+            // 
+            btn_tela_de_vendas.Location = new Point(45, 34);
+            btn_tela_de_vendas.Name = "btn_tela_de_vendas";
+            btn_tela_de_vendas.Size = new Size(106, 23);
+            btn_tela_de_vendas.TabIndex = 10;
+            btn_tela_de_vendas.Text = "Tela de Vendas";
+            btn_tela_de_vendas.UseVisualStyleBackColor = true;
+            btn_tela_de_vendas.Click += btn_tela_de_vendas_Click;
             // 
             // Form1
             // 
@@ -148,6 +159,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(567, 385);
+            Controls.Add(btn_tela_de_vendas);
             Controls.Add(linkLabel2);
             Controls.Add(linkLabel1);
             Controls.Add(label4);
@@ -162,6 +174,7 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -179,5 +192,6 @@
         private Label label4;
         private LinkLabel linkLabel1;
         private LinkLabel linkLabel2;
+        private Button btn_tela_de_vendas;
     }
 }

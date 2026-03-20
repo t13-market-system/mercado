@@ -50,5 +50,16 @@ namespace SistemaLogin
             F_cad_produtos f_Cad_Produtos = new F_cad_produtos();
             f_Cad_Produtos.ShowDialog();
         }
+
+        private void btn_tela_de_vendas_Click(object sender, EventArgs e)
+        {
+            Tela_de_Vendas tela_De_Vendas = new Tela_de_Vendas();
+            tela_De_Vendas.ShowDialog();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
