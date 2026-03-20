@@ -38,6 +38,7 @@
             label3 = new Label();
             label4 = new Label();
             linkLabel1 = new LinkLabel();
+            linkLabel2 = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -130,12 +131,24 @@
             linkLabel1.Text = "Criar conta";
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
+            // linkLabel2
+            // 
+            linkLabel2.AutoSize = true;
+            linkLabel2.Location = new Point(404, 34);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(33, 15);
+            linkLabel2.TabIndex = 9;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "Teste";
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(567, 385);
+            Controls.Add(linkLabel2);
             Controls.Add(linkLabel1);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -165,5 +178,6 @@
         private Label label3;
         private Label label4;
         private LinkLabel linkLabel1;
+        private LinkLabel linkLabel2;
     }
 }

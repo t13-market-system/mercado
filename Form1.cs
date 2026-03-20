@@ -44,5 +44,11 @@ namespace SistemaLogin
                 MessageBox.Show("Usuário ou senha incorretos!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            F_cad_produtos f_Cad_Produtos = new F_cad_produtos();
+            f_Cad_Produtos.ShowDialog();
+        }
     }
 }
