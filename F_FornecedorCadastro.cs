@@ -122,22 +122,7 @@ namespace SistemaLogin
             pnlBody.Controls.Add(logo);
 
             logo.Location = new Point(pnlBody.ClientSize.Width - logo.Width - 20, 70);
-
-            var logoPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                "UI",
-                "100stressmart.png"
-                );
-
-            if (System.IO.File.Exists(logoPath))
-            {
-                using (var img = Image.FromFile(logoPath))
-                {
-                    logo.Image = new Bitmap(img);
-                }
-            }
-            //else { MessageBox.Show("Imagem não encontrada"); }
-
-
+            logo.Image = new Bitmap(Properties.Resources._100stressmart);
             // manter na ordem certa
             Controls.Add(pnlBody);
             Controls.Add(pnlFooter);
