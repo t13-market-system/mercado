@@ -11,10 +11,10 @@ namespace SistemaLogin
     {
         // String de conexão
         private static readonly string connectionString =
-            "Server=localhost;" +
+            "Server=10.141.45.42;" +
             "Database=sistema_login;" +
-            "Uid=root;" +
-            "Pwd=;" +
+            "Uid=mercado;" +
+            "Pwd=senac;" +
             "Port=3306;";
 
         public static MySqlConnection GetConnection()
