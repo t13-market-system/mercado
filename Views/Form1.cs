@@ -28,6 +28,7 @@ namespace SistemaLogin
             {
                 MessageBox.Show("Preencha todos os campos!", "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+
             }
 
             // Chama o serviço para autenticar
@@ -36,8 +37,13 @@ namespace SistemaLogin
 
             if (isValid)
             {
-                MessageBox.Show("Login realizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                // Aqui você pode ocultar a tela de login e abrir o formulário principal do sistema
+                //MessageBox.Show("Login realizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Aqui iremos  ocultar a tela de login e abrir o formulário principal do sistema
+                F_Tela_Inicial f_Tela_Inicial = new F_Tela_Inicial();
+                f_Tela_Inicial.FormClosed += (s, args) => this.Close();
+                f_Tela_Inicial.Show();
+                this.Hide();
+
             }
             else
             {
@@ -52,6 +58,11 @@ namespace SistemaLogin
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
