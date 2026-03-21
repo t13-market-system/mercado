@@ -50,5 +50,10 @@ namespace SistemaLogin
             F_cad_produtos f_Cad_Produtos = new F_cad_produtos();
             f_Cad_Produtos.ShowDialog();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
