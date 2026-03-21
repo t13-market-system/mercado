@@ -55,5 +55,11 @@ namespace SistemaLogin
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            F_Tela_de_Venda tela_De_Venda = new F_Tela_de_Venda();
+            tela_De_Venda.ShowDialog();
+        }
     }
 }

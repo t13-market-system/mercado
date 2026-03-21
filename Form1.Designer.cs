@@ -37,6 +37,7 @@
             pictureBox2 = new PictureBox();
             tb_senha = new TextBox();
             pictureBox1 = new PictureBox();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -64,11 +65,11 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Britannic Bold", 24F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Sienna;
             label3.Location = new Point(131, 115);
             label3.Name = "label3";
-            label3.Size = new Size(301, 36);
+            label3.Size = new Size(296, 37);
             label3.TabIndex = 6;
             label3.Text = "Mercado 100 stress";
             // 
@@ -123,12 +124,23 @@
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
+            // button2
+            // 
+            button2.Location = new Point(398, 40);
+            button2.Name = "button2";
+            button2.Size = new Size(144, 23);
+            button2.TabIndex = 13;
+            button2.Text = "Tela Venda de Produtos";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PeachPuff;
             ClientSize = new Size(567, 430);
+            Controls.Add(button2);
             Controls.Add(pictureBox1);
             Controls.Add(tb_senha);
             Controls.Add(pictureBox2);
@@ -157,5 +169,6 @@
         private PictureBox pictureBox2;
         private TextBox tb_senha;
         private PictureBox pictureBox1;
+        private Button button2;
     }
 }
