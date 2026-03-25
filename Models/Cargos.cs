@@ -10,7 +10,7 @@ namespace SistemaLogin.Models
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public int SalarioFuncionario { get; set; }
+        public decimal SalarioFuncionario { get; set; }
 
     }
 }
