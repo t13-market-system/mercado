@@ -59,5 +59,55 @@ namespace SistemaLogin.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap account_circle_100dp_F19E39_FILL1_wght400_GRAD0_opsz48 {
+            get {
+                object obj = ResourceManager.GetObject("account_circle_100dp_F19E39_FILL1_wght400_GRAD0_opsz48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap account_circle_100dp_F19E39_FILL1_wght400_GRAD0_opsz481 {
+            get {
+                object obj = ResourceManager.GetObject("account_circle_100dp_F19E39_FILL1_wght400_GRAD0_opsz481", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap account_circle_70dp_F19E39_FILL1_wght400_GRAD0_opsz48 {
+            get {
+                object obj = ResourceManager.GetObject("account_circle_70dp_F19E39_FILL1_wght400_GRAD0_opsz48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Yellow_Orange_Illustration_Mart_ {
+            get {
+                object obj = ResourceManager.GetObject("Yellow_Orange_Illustration_Mart_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Yellow_Orange_Illustration_Mart_1 {
+            get {
+                object obj = ResourceManager.GetObject("Yellow_Orange_Illustration_Mart_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
