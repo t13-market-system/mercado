@@ -11,7 +11,8 @@ namespace SistemaLogin
     {
         // String de conexão
         private static readonly string connectionString =
-            "Server=10.141.45.42;" +
+            //"Server=10.141.45.42;" +
+            "Server=localhost;" +
             "Database=sistema_login;" +
             "Uid=mercado;" +
             "Pwd=senac;" +
