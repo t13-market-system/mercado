@@ -10,9 +10,9 @@ namespace SistemaLogin
     internal class DatabaseConnection
     {
         // String de conexão
+
         private static readonly string connectionString =
-            //"Server=10.141.45.42;" +
-            "Server=localhost;" +
+            "Server=10.141.45.42;" +
             "Database=sistema_login;" +
             "Uid=mercado;" +
             "Pwd=senac;" +
