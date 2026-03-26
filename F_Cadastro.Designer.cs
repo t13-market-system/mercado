@@ -111,7 +111,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.Yellow_Orange_Illustration_Mart_;
+          //  pictureBox1.Image = Properties.Resources.Yellow_Orange_Illustration_Mart_;
             pictureBox1.Location = new Point(-1, -26);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(102, 83);
