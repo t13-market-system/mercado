@@ -18,13 +18,14 @@ namespace SistemaLogin.DAO
                 using (var conn = DatabaseConnection.GetConnection())
                 {
                     conn.Open();
-                    string query = "INSERT INTO fornecedo (nome_fornecedor) VALUES (@nome_fornecedor)";
+                    string query = "INSERT INTO fornecedor (`nome_fornecedor`, `cnpj_fornecedor`, `email_fornecedor`) VALUES (@nome_fornecedor,@cnpj_fornecedor,@email_fornecedor)";
                     using (var cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@nome_fornecedor", fornecedor.Nome_Fornecedor);
+                        cmd.Parameters.AddWithValue("@cnpj_fornecedor", fornecedor.CNPJ_Fornecedor);
+                        cmd.Parameters.AddWithValue("@email_fornecedor", fornecedor.Email_Fornecedor);
                         cmd.ExecuteNonQuery();
                     }
-
 
 
                 }
@@ -34,7 +35,7 @@ namespace SistemaLogin.DAO
             {
                 if (err.Number == 1062) // Erro de UNIQUE (Duplicidade)
                 {
-                    throw new Exception("Este fornecedor já está cadastrada no sistema.");
+                    throw new Exception("Este fornecedor já está cadastrado no sistema.");
                 }
 
 
@@ -99,14 +100,14 @@ namespace SistemaLogin.DAO
     }
 
 
-   
-    
+
+
 
 }
 
-    
 
-    
+
+
 
 
 
