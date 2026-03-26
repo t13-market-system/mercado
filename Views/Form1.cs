@@ -66,5 +66,10 @@ namespace SistemaLogin
         {
 
         }
+
+        private void tb_senha_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
