@@ -73,7 +73,8 @@ namespace SistemaLogin.DAO
             using (var conn = DatabaseConnection.GetConnection())
             {
                 conn.Open();
-                string query = "UPDATE fornecedor SET nome_fornecedor = @nome WHERE id_fornecedor = @id_fornecedor";
+                string query = "UPDATE fornecedor SET nome_fornecedor = @nome_fornecedor WHERE id_fornecedor = @id";
+
                 using (var cmd = new MySqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@nome_fornecedor", fornecedor.Nome_Fornecedor);
