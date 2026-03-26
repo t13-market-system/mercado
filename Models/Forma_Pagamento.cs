@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SistemaLogin
+namespace SistemaLogin.Models
 {
     internal class Forma_Pagamento
     {
