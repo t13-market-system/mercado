@@ -58,9 +58,9 @@
             // BT_cadastro
             // 
             BT_cadastro.BackColor = Color.Sienna;
-            BT_cadastro.Location = new Point(278, 280);
+            BT_cadastro.Location = new Point(46, 245);
             BT_cadastro.Name = "BT_cadastro";
-            BT_cadastro.Size = new Size(302, 65);
+            BT_cadastro.Size = new Size(767, 54);
             BT_cadastro.TabIndex = 1;
             BT_cadastro.Text = "Cadastrar";
             BT_cadastro.UseVisualStyleBackColor = false;
@@ -114,7 +114,8 @@
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(385, 7);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(277, 77);
+            pictureBox1.Size = new Size(111, 77);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             // 
@@ -193,7 +194,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Wheat;
-            ClientSize = new Size(928, 435);
+            ClientSize = new Size(839, 318);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(TB_codigo);
