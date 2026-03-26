@@ -107,8 +107,9 @@
             button3.Name = "button3";
             button3.Size = new Size(111, 23);
             button3.TabIndex = 2;
-            button3.Text = "button3";
+            button3.Text = "Fornecedor";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -116,8 +117,9 @@
             button2.Name = "button2";
             button2.Size = new Size(112, 23);
             button2.TabIndex = 1;
-            button2.Text = "button2";
+            button2.Text = "Funcionário";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -245,7 +247,6 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.Yellow_Orange_Illustration_Mart_;
             pictureBox1.Location = new Point(3, -3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(100, 50);

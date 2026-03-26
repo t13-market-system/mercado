@@ -139,5 +139,20 @@ namespace SistemaLogin
 
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            F_Cad_Fornecedor f_Cad_Fornecedor = new F_Cad_Fornecedor();
+            f_Cad_Fornecedor.ShowDialog();
+
+
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+        }
     } // Fim da classe
 }
