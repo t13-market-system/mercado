@@ -31,6 +31,7 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
             panel1 = new Panel();
+            button7 = new Button();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
@@ -92,6 +93,7 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ActiveBorder;
+            panel1.Controls.Add(button7);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
@@ -100,6 +102,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(114, 586);
             panel1.TabIndex = 0;
+            // 
+            // button7
+            // 
+            button7.Location = new Point(0, 123);
+            button7.Name = "button7";
+            button7.Size = new Size(111, 23);
+            button7.TabIndex = 3;
+            button7.Text = "Vendas";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
             // 
             // button3
             // 
@@ -129,6 +141,7 @@
             button1.TabIndex = 0;
             button1.Text = "Produtos";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // painel_produtos
             // 
@@ -299,5 +312,6 @@
         private DataGridView dgvCategorias;
         private Button button6;
         private Button button5;
+        private Button button7;
     }
 }

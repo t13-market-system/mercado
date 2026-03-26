@@ -152,8 +152,19 @@ namespace SistemaLogin
 
         private void button2_Click(object sender, EventArgs e)
         {
-            F_cad_produtos f_cad_produtos = new F_cad_produtos();  
+            F_cad_produtos f_cad_produtos = new F_cad_produtos();
             f_cad_produtos.ShowDialog();
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            F_Tela_de_Venda f_Tela_de_venda = new F_Tela_de_Venda();
+            f_Tela_de_venda.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
 
         }
     } // Fim da classe

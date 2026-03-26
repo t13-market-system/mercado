@@ -27,8 +27,6 @@ namespace SistemaLogin.DAO
                         cmd.ExecuteNonQuery();
                     }
 
-
-
                 }
 
             }catch (MySqlException err) {
