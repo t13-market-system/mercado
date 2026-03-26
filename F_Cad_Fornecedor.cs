@@ -28,7 +28,7 @@ namespace SistemaLogin
                 btnSalvar.Click += (s, e) =>
                 {
                     MessageBox.Show(
-                        "UI tá ok.falta conexão com bd, mudar quando tiver.", 
+                        "UI tá ok.falta conexão com bd, mudar quando tiver.",
                         "Info",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information
@@ -78,5 +78,18 @@ namespace SistemaLogin
                     yield return child;
             }
         }
+
+
+        private void cmbEstado_Click(object sender, EventArgs e)
+        {
+            cmbEstado.Items.AddRange(new string[]
+            {
+                "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
+                "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN",
+                "RS", "RO", "RR", "SC", "SP", "SE", "TO"
+            });
+       
+        }
+
+        }
     }
-}
