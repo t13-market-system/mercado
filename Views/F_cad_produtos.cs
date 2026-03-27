@@ -98,7 +98,7 @@ namespace SistemaLogin
                 };
 
                 // 5. Salvar
-                produtoDAO1 produtoDAO = new produtoDAO1();
+                ProdutoDAO produtoDAO = new ProdutoDAO();
                 produtoDAO.AdicionarProduto(produto);
 
                 MessageBox.Show("Produto cadastrado com sucesso!",
