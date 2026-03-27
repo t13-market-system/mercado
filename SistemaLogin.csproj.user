@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="Views\F_Tela_de_Venda.cs">
+    <Compile Update="Cad_Funcionario.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="F_Cadastro_Funcionario.cs">
@@ -17,6 +17,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Views\F_cad_produtos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\F_Tela_de_Venda.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Views\F_Tela_Inicial.cs">
