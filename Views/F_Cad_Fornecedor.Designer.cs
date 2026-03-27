@@ -27,6 +27,7 @@
             btnCancelar = new Button();
             pnlFooter = new Panel();
             pnlBody = new Panel();
+            pictureBox1 = new PictureBox();
             lblContatoSecao = new Label();
             sepContato = new Panel();
             lblNome = new Label();
@@ -42,7 +43,6 @@
             lblPais = new Label();
             txtPais = new TextBox();
             lblEstado = new Label();
-            txtEstado = new TextBox();
             lblCidade = new Label();
             txtCidade = new TextBox();
             lblRua = new Label();
@@ -55,7 +55,7 @@
             txtCep = new TextBox();
             lblComplemento = new Label();
             txtComplemento = new TextBox();
-            pictureBox1 = new PictureBox();
+            cmbEstado = new ComboBox();
             pnlHeader.SuspendLayout();
             pnlToolbar.SuspendLayout();
             pnlBody.SuspendLayout();
@@ -155,7 +155,7 @@
             // 
             pnlFooter.BackColor = Color.FromArgb(139, 101, 51);
             pnlFooter.Dock = DockStyle.Bottom;
-            pnlFooter.Location = new Point(0, 700);
+            pnlFooter.Location = new Point(0, 611);
             pnlFooter.Name = "pnlFooter";
             pnlFooter.Padding = new Padding(20, 8, 20, 8);
             pnlFooter.Size = new Size(1024, 40);
@@ -165,6 +165,7 @@
             // 
             pnlBody.AutoScroll = true;
             pnlBody.BackColor = Color.FromArgb(245, 235, 220);
+            pnlBody.Controls.Add(cmbEstado);
             pnlBody.Controls.Add(pictureBox1);
             pnlBody.Controls.Add(lblContatoSecao);
             pnlBody.Controls.Add(sepContato);
@@ -181,7 +182,6 @@
             pnlBody.Controls.Add(lblPais);
             pnlBody.Controls.Add(txtPais);
             pnlBody.Controls.Add(lblEstado);
-            pnlBody.Controls.Add(txtEstado);
             pnlBody.Controls.Add(lblCidade);
             pnlBody.Controls.Add(txtCidade);
             pnlBody.Controls.Add(lblRua);
@@ -198,8 +198,18 @@
             pnlBody.Location = new Point(0, 145);
             pnlBody.Name = "pnlBody";
             pnlBody.Padding = new Padding(20);
-            pnlBody.Size = new Size(1024, 555);
+            pnlBody.Size = new Size(1024, 466);
             pnlBody.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(743, 136);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(258, 204);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 28;
+            pictureBox1.TabStop = false;
             // 
             // lblContatoSecao
             // 
@@ -354,22 +364,11 @@
             lblEstado.AutoSize = true;
             lblEstado.Font = new Font("Segoe UI", 9F);
             lblEstado.ForeColor = Color.FromArgb(100, 80, 60);
-            lblEstado.Location = new Point(300, 265);
+            lblEstado.Location = new Point(298, 265);
             lblEstado.Name = "lblEstado";
             lblEstado.Size = new Size(42, 15);
             lblEstado.TabIndex = 14;
             lblEstado.Text = "Estado";
-            // 
-            // txtEstado
-            // 
-            txtEstado.BackColor = Color.White;
-            txtEstado.BorderStyle = BorderStyle.FixedSingle;
-            txtEstado.Font = new Font("Segoe UI", 10F);
-            txtEstado.ForeColor = Color.FromArgb(100, 80, 60);
-            txtEstado.Location = new Point(300, 287);
-            txtEstado.Name = "txtEstado";
-            txtEstado.Size = new Size(120, 25);
-            txtEstado.TabIndex = 15;
             // 
             // lblCidade
             // 
@@ -420,7 +419,7 @@
             lblBairro.AutoSize = true;
             lblBairro.Font = new Font("Segoe UI", 9F);
             lblBairro.ForeColor = Color.FromArgb(100, 80, 60);
-            lblBairro.Location = new Point(450, 325);
+            lblBairro.Location = new Point(185, 385);
             lblBairro.Name = "lblBairro";
             lblBairro.Size = new Size(38, 15);
             lblBairro.TabIndex = 20;
@@ -432,9 +431,9 @@
             txtBairro.BorderStyle = BorderStyle.FixedSingle;
             txtBairro.Font = new Font("Segoe UI", 10F);
             txtBairro.ForeColor = Color.FromArgb(100, 80, 60);
-            txtBairro.Location = new Point(450, 347);
+            txtBairro.Location = new Point(185, 407);
             txtBairro.Name = "txtBairro";
-            txtBairro.Size = new Size(220, 25);
+            txtBairro.Size = new Size(235, 25);
             txtBairro.TabIndex = 21;
             // 
             // lblNumero
@@ -464,7 +463,7 @@
             lblCep.AutoSize = true;
             lblCep.Font = new Font("Segoe UI", 9F);
             lblCep.ForeColor = Color.FromArgb(100, 80, 60);
-            lblCep.Location = new Point(225, 385);
+            lblCep.Location = new Point(450, 325);
             lblCep.Name = "lblCep";
             lblCep.Size = new Size(28, 15);
             lblCep.TabIndex = 24;
@@ -476,9 +475,9 @@
             txtCep.BorderStyle = BorderStyle.FixedSingle;
             txtCep.Font = new Font("Segoe UI", 10F);
             txtCep.ForeColor = Color.FromArgb(100, 80, 60);
-            txtCep.Location = new Point(225, 407);
+            txtCep.Location = new Point(450, 347);
             txtCep.Name = "txtCep";
-            txtCep.Size = new Size(150, 25);
+            txtCep.Size = new Size(220, 25);
             txtCep.TabIndex = 25;
             // 
             // lblComplemento
@@ -503,22 +502,21 @@
             txtComplemento.Size = new Size(220, 25);
             txtComplemento.TabIndex = 27;
             // 
-            // pictureBox1
+            // cmbEstado
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(719, 136);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(258, 204);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 28;
-            pictureBox1.TabStop = false;
+            cmbEstado.FormattingEnabled = true;
+            cmbEstado.Location = new Point(299, 289);
+            cmbEstado.Name = "cmbEstado";
+            cmbEstado.Size = new Size(121, 23);
+            cmbEstado.TabIndex = 29;
+            cmbEstado.Click += cmbEstado_Click;
             // 
             // F_Cad_Fornecedor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 235, 220);
-            ClientSize = new Size(1024, 740);
+            ClientSize = new Size(1024, 651);
             Controls.Add(pnlBody);
             Controls.Add(pnlFooter);
             Controls.Add(pnlToolbar);
@@ -563,7 +561,6 @@
         private Label lblPais;
         private TextBox txtPais;
         private Label lblEstado;
-        private TextBox txtEstado;
         private Label lblCidade;
         private TextBox txtCidade;
         private Label lblRua;
@@ -576,5 +573,6 @@
         private TextBox txtCep;
         private Label lblComplemento;
         private TextBox txtComplemento;
+        private ComboBox cmbEstado;
     }
 }

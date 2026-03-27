@@ -167,5 +167,11 @@ namespace SistemaLogin
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            F_cad_produtos f_Cad_Produtos = new F_cad_produtos();
+            f_Cad_Produtos.ShowDialog();
+        }
     } // Fim da classe
 }

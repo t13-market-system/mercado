@@ -92,7 +92,7 @@
             // CB_categoria
             // 
             CB_categoria.FormattingEnabled = true;
-            CB_categoria.Location = new Point(441, 114);
+            CB_categoria.Location = new Point(46, 220);
             CB_categoria.Name = "CB_categoria";
             CB_categoria.Size = new Size(372, 23);
             CB_categoria.TabIndex = 5;
@@ -103,7 +103,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Swis721 Hv BT", 15F);
             label2.ForeColor = Color.Peru;
-            label2.Location = new Point(441, 87);
+            label2.Location = new Point(46, 193);
             label2.Name = "label2";
             label2.Size = new Size(120, 24);
             label2.TabIndex = 6;
@@ -124,7 +124,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Swis721 Hv BT", 15F);
             label4.ForeColor = Color.Peru;
-            label4.Location = new Point(46, 164);
+            label4.Location = new Point(46, 140);
             label4.Name = "label4";
             label4.Size = new Size(126, 24);
             label4.TabIndex = 9;
@@ -133,7 +133,7 @@
             // CB_fornecedor
             // 
             CB_fornecedor.FormattingEnabled = true;
-            CB_fornecedor.Location = new Point(46, 191);
+            CB_fornecedor.Location = new Point(46, 167);
             CB_fornecedor.Name = "CB_fornecedor";
             CB_fornecedor.Size = new Size(372, 23);
             CB_fornecedor.TabIndex = 8;
