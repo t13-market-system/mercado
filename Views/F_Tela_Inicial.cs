@@ -163,15 +163,18 @@ namespace SistemaLogin
             f_Tela_de_venda.ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             F_cad_produtos f_Cad_Produtos = new F_cad_produtos();
             f_Cad_Produtos.ShowDialog();
+        }
+
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+            F_Tela_de_Venda f_Tela_De_Venda = new F_Tela_de_Venda();
+            f_Tela_De_Venda.ShowDialog();
         }
     } // Fim da classe
 }
