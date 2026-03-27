@@ -10,11 +10,18 @@ namespace SistemaLogin
         public F_Cad_Fornecedor()
         {
             InitializeComponent();
+            PreencherCampos();
+
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
 
             // Wire up button events
             WireUpEvents();
+        }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void WireUpEvents()
@@ -27,6 +34,9 @@ namespace SistemaLogin
             {
                 btnSalvar.Click += (s, e) =>
                 {
+                    string PaisSelecionado = "Brasil";
+                    string estadoSelecionado = cmbEstado.SelectedItem.ToString();
+
                     MessageBox.Show(
                         "UI tá ok.falta conexão com bd, mudar quando tiver.",
                         "Info",
@@ -79,8 +89,7 @@ namespace SistemaLogin
             }
         }
 
-
-        private void cmbEstado_Click(object sender, EventArgs e)
+        private void PreencherCampos()
         {
             cmbEstado.Items.AddRange(new string[]
             {
@@ -88,8 +97,12 @@ namespace SistemaLogin
                 "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN",
                 "RS", "RO", "RR", "SC", "SP", "SE", "TO"
             });
-       
+            cmbEstado.SelectedIndex = 24;
         }
 
+        private void txtNumero_TextChanged(object sender, EventArgs e)
+        {
+            txtNumero.Text = System.Text.RegularExpressions.Regex.Replace(txtNumero.Text, "[^0-9]", "");
         }
     }
+}
