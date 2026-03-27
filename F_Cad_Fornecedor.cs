@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using SistemaLogin.UI;
 
@@ -15,13 +16,11 @@ namespace SistemaLogin
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
 
+            txtCep.MaxLength = 9;
+            txtCep.TextChanged += txtCep_TextChanged;
+
             // Wire up button events
             WireUpEvents();
-        }
-
-        private void Form_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void WireUpEvents()
@@ -100,9 +99,41 @@ namespace SistemaLogin
             cmbEstado.SelectedIndex = 24;
         }
 
-        private void txtNumero_TextChanged(object sender, EventArgs e)
+        private bool _formatandoCep = false;
+
+        private void txtCep_TextChanged(object sender, EventArgs e)
         {
-            txtNumero.Text = System.Text.RegularExpressions.Regex.Replace(txtNumero.Text, "[^0-9]", "");
+            if (_formatandoCep) return;
+            _formatandoCep = true;
+
+            int selStartOriginal = txtCep.SelectionStart;
+            string textoOriginal = txtCep.Text;
+
+            int digitosAntesCursor = 0;
+            for (int i = 0; i < Math.Min(selStartOriginal, textoOriginal.Length); i++)
+            {
+                if (char.IsDigit(textoOriginal[i])) digitosAntesCursor++;
+            }
+            string digits = Regex.Replace(textoOriginal, @"\D", "");
+            if (digits.Length > 8) digits = digits.Substring(0, 8);
+
+            string formatted = digits.Length > 5
+                ? digits.Substring(0, 5) + "-" + digits.Substring(5)
+                : digits;
+
+            if (txtCep.Text != formatted)
+                txtCep.Text = formatted;
+
+            int novoCursor;
+            if (digitosAntesCursor <= 5)
+                novoCursor = digitosAntesCursor;
+            else
+                novoCursor = digitosAntesCursor + 1; 
+
+            txtCep.SelectionStart = Math.Min(novoCursor, txtCep.Text.Length);
+            txtCep.SelectionLength = 0;
+
+            _formatandoCep = false;
         }
     }
 }

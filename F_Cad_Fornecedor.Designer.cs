@@ -465,7 +465,6 @@
             txtNumero.Name = "txtNumero";
             txtNumero.Size = new Size(120, 25);
             txtNumero.TabIndex = 23;
-            txtNumero.TextChanged += txtNumero_TextChanged;
             // 
             // lblCep
             // 
