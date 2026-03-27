@@ -1,4 +1,6 @@
 ﻿using MySqlConnector;
+using SistemaLogin.DAO;
+using SistemaLogin.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +25,15 @@ namespace SistemaLogin
 
         private void F_cad_produtos_Load(object sender, EventArgs e)
         {
+            CategoriaDAO dao = new CategoriaDAO();
+            DataTable dt = dao.ObterTodas();
+
+            CB_categoria.Items.Clear();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                CB_categoria.Items.Add(row["categoria"].ToString());
+            }
 
 
 
@@ -52,67 +63,60 @@ namespace SistemaLogin
             string codigo = TB_codigo.Text.Trim();
 
             // 1. Validação básica
-            if (string.IsNullOrEmpty(nomeProduto) || string.IsNullOrEmpty(categoria) || string.IsNullOrEmpty(fornecedor) || string.IsNullOrEmpty(precoProduto) || string.IsNullOrEmpty(codigo))
+            if (string.IsNullOrEmpty(nomeProduto) ||
+                string.IsNullOrEmpty(categoria) ||
+                string.IsNullOrEmpty(fornecedor) ||
+                string.IsNullOrEmpty(precoProduto) ||
+                string.IsNullOrEmpty(codigo))
             {
-                MessageBox.Show("Preencha todos os campos para cadastrar!", "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Preencha todos os campos para cadastrar!",
+                                "Validação",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
                 return;
             }
 
-
-            // 3. Salvar no Banco de Dados
-            using (var conn = DatabaseConnection.GetConnection())
+            try
             {
-                try
+                // 2. Converter preço
+                decimal preco;
+                if (!decimal.TryParse(precoProduto, out preco))
                 {
-                    conn.Open();
-
-                    string Numero_categoria;
-                    string comad = "SELECT id_categoria FROM categoria WHERE nome_categoria = @nome_categoria;";
-
-                    using (var cmd = new MySqlCommand(comad, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@nome_categoria", categoria); // exemplo
-
-                        Numero_categoria = cmd.ExecuteScalar()?.ToString();
-                    }
-
-                    string sql = "INSERT INTO produto (nome_produto, id_categoria, id_fornecedor, preco_produto, codigo_produto) VALUES (@nome_produto, @categoria, " +
-                        "@fornecedor, @preco, @codigo )";
-
-                    using (var cmd = new MySqlCommand(sql, conn))
-                    {
-                        // Parâmetros para evitar SQL Injection 
-                        cmd.Parameters.AddWithValue("@nome_produto", nomeProduto);
-                        cmd.Parameters.AddWithValue("@categoria", Numero_categoria);
-                        cmd.Parameters.AddWithValue("@fornecedor", fornecedor);
-                        cmd.Parameters.AddWithValue("@preco", precoProduto);
-                        cmd.Parameters.AddWithValue("@codigo", codigo);
-
-                        cmd.ExecuteNonQuery();
-
-                        MessageBox.Show("Usuário produto com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Limpa os campos após o cadastro
-                        tb_nomeProduto.Clear();
-                        CB_categoria.SelectedIndex = -1;
-                        CB_fornecedor.SelectedIndex = -1;
-                        TB_precoProduto.Clear();
-                        TB_codigo.Clear();
-                    }
+                    MessageBox.Show("Preço inválido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                catch (MySqlException ex)
+
+
+                // 4. Criar objeto Produto
+                Produto produto = new Produto
                 {
-                    // O código 1062 no MySQL/MariaDB significa que tentou inserir um valor UNIQUE que já existe
-                    if (ex.Number == 1062)
-                    {
-                        MessageBox.Show("Este Produto já existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erro ao cadastrar no banco: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                    Nome_produto = nomeProduto,
+                    Id_categoria = Convert.ToInt32(CB_categoria.SelectedValue),
+                    Id_fornecedor = Convert.ToInt32(CB_fornecedor.SelectedValue),
+                    Preco_produto = preco,
+                    Codigo_produto = codigo
+                };
+
+                // 5. Salvar
+                produtoDAO1 produtoDAO = new produtoDAO1();
+                produtoDAO.AdicionarProduto(produto);
+
+                MessageBox.Show("Produto cadastrado com sucesso!",
+                                "Sucesso",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
+    
+

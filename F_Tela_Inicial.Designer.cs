@@ -129,6 +129,7 @@
             button1.TabIndex = 0;
             button1.Text = "Produtos";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // painel_produtos
             // 
