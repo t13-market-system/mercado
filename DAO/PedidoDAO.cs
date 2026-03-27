@@ -34,7 +34,7 @@ namespace SistemaLogin.DAO
             {
                 if (err.Number == 1062)
                 {
-                    throw new Exception("Este pedido já está cadastrada no sistema.");
+                    throw new Exception("Este pedido já está cadastrado no sistema.");
                 }
 
 
