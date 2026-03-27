@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SistemaLogin.DAO
 {
-    internal class produtoDAO1
+    internal class ProdutoDAO
     {
 
         public void AdicionarProduto(Produto produto)
