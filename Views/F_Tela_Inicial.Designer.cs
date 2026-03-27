@@ -111,7 +111,7 @@
             button7.TabIndex = 3;
             button7.Text = "Vendas";
             button7.UseVisualStyleBackColor = true;
-            button7.Click += button7_Click;
+            button7.Click += button7_Click_1;
             // 
             // button3
             // 
@@ -129,7 +129,7 @@
             button2.Name = "button2";
             button2.Size = new Size(112, 23);
             button2.TabIndex = 1;
-            button2.Text = "Produtos";
+            button2.Text = "Funcionário";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
