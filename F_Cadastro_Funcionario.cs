@@ -16,5 +16,10 @@ namespace SistemaLogin
         {
             InitializeComponent();
         }
+
+        private void F_Cadastro_Funcionario_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

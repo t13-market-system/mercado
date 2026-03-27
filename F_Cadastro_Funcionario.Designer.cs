@@ -347,6 +347,7 @@
             Controls.Add(label1);
             Name = "F_Cadastro_Funcionario";
             Text = "F_Cadastro_Funcionario";
+            Load += F_Cadastro_Funcionario_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
