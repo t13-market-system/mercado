@@ -137,6 +137,7 @@
             CB_fornecedor.Name = "CB_fornecedor";
             CB_fornecedor.Size = new Size(372, 23);
             CB_fornecedor.TabIndex = 8;
+            CB_fornecedor.SelectedIndexChanged += CB_fornecedor_SelectedIndexChanged;
             // 
             // label5
             // 

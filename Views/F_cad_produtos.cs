@@ -56,25 +56,6 @@ namespace SistemaLogin
 
         private void BT_cadastro_Click(object sender, EventArgs e)
         {
-            string nomeProduto = tb_nomeProduto.Text.Trim();
-            string categoria = CB_categoria.Text;
-            string fornecedor = CB_fornecedor.Text;
-            string precoProduto = TB_precoProduto.Text.Trim();
-            string codigo = TB_codigo.Text.Trim();
-
-            // 1. Validação básica
-            if (string.IsNullOrEmpty(nomeProduto) ||
-                string.IsNullOrEmpty(categoria) ||
-                string.IsNullOrEmpty(fornecedor) ||
-                string.IsNullOrEmpty(precoProduto) ||
-                string.IsNullOrEmpty(codigo))
-            {
-                MessageBox.Show("Preencha todos os campos para cadastrar!",
-                                "Validação",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-                return;
-            }
 
             try
             {
@@ -113,6 +94,11 @@ namespace SistemaLogin
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CB_fornecedor_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
