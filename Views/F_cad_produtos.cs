@@ -57,6 +57,40 @@ namespace SistemaLogin
         private void BT_cadastro_Click(object sender, EventArgs e)
         {
 
+            try
+            {
+                // 2. Converter preço
+                decimal preco;
+                if (!decimal.TryParse(precoProduto, out preco))
+                {
+                    MessageBox.Show("Preço inválido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+
+                // 4. Criar objeto Produto
+                Produto produto = new Produto
+                {
+                    Nome_produto = nomeProduto,
+                    Id_categoria = Convert.ToInt32(CB_categoria.SelectedValue),
+                    Id_fornecedor = Convert.ToInt32(CB_fornecedor.SelectedValue),
+                    Preco_produto = preco,
+                    Codigo_produto = codigo
+                };
+
+                // 5. Salvar
+                ProdutoDAO produtoDAO = new ProdutoDAO();
+                produtoDAO.AdicionarProduto(produto);
+
+                MessageBox.Show("Produto cadastrado com sucesso!",
+                                "Sucesso",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
