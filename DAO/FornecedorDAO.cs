@@ -11,43 +11,41 @@ namespace SistemaLogin.DAO
 {
     internal class FornecedorDAO
     {
-        public void Adicionar(Fornecedor fornecedor)
+        public void Adicionar(Fornecedor fornecedor, Endereco_Fornecedor endereco, TelefoneFornecedor telefone)
         {
-            try
+            using (var conn = DatabaseConnection.GetConnection())
+
+                try
             {
-                using (var conn = DatabaseConnection.GetConnection())
-                {
-                    conn.Open();
-                    string query = "INSERT INTO fornecedor (`nome_fornecedor`, `cnpj_fornecedor`, `email_fornecedor`) VALUES (@nome_fornecedor,@cnpj_fornecedor,@email_fornecedor)";
-                    using (var cmd = new MySqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@nome_fornecedor", fornecedor.Nome_Fornecedor);
-                        cmd.Parameters.AddWithValue("@cnpj_fornecedor", fornecedor.CNPJ_Fornecedor);
-                        cmd.Parameters.AddWithValue("@email_fornecedor", fornecedor.Email_Fornecedor);
-                        cmd.ExecuteNonQuery();
-                    }
-
-
-                }
-
+                conn.Open();               
+                    MySqlCommand cmd = new MySqlCommand("cadastrar_fornecedor", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                // Parâmetros
+                cmd.Parameters.AddWithValue("@p_nome", fornecedor.Nome_Fornecedor);
+                cmd.Parameters.AddWithValue("@p_cnpj", fornecedor.CNPJ_Fornecedor);
+                cmd.Parameters.AddWithValue("@p_email", fornecedor.Email_Fornecedor);
+                cmd.Parameters.AddWithValue("@p_telefone", telefone.Telefone_Fornecedor);
+                cmd.Parameters.AddWithValue("@p_pais", endereco.Pais_Fornecedor);
+                cmd.Parameters.AddWithValue("@p_estado", endereco.Estado_Fornecedor);
+                cmd.Parameters.AddWithValue("@p_cidade", endereco.Cidade_Fornecedor);
+                cmd.Parameters.AddWithValue("@p_rua", endereco.Rua_Fornecedor);
+                cmd.Parameters.AddWithValue("@p_bairro", endereco.Bairro_Fornecedor);
+                cmd.Parameters.AddWithValue("@p_numero", endereco.Numero_Fornecedor);
+                cmd.Parameters.AddWithValue("@p_cep", endereco.CEP_Fornecedor);
+                cmd.Parameters.AddWithValue("@p_complemento", endereco.Complemento_Fornecedor);
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("Fornecedor cadastrado com sucesso!");
             }
-            catch (MySqlException err)
+            catch (Exception ex)
             {
-                if (err.Number == 1062) // Erro de UNIQUE (Duplicidade)
-                {
-                    throw new Exception("Este fornecedor já está cadastrado no sistema.");
-                }
-
-
-                // Lança uma mensagem mascarada e segura para a interface gráfica
-                throw new Exception("Ocorreu um erro interno ao tentar salvar a fornecedor.");
-
+                Console.WriteLine("Erro: " + ex.Message);
             }
-
-
-
-
         }
+
+
+
+
+    
         public DataTable Listfornecedor()
         {
             DataTable dt = new DataTable();
