@@ -190,8 +190,7 @@ namespace SistemaLogin
 
         private void button2_Click(object sender, EventArgs e)
         {
-            F_cad_produtos f_cad_produtos = new F_cad_produtos();
-            f_cad_produtos.ShowDialog();
+          
 
         }
 
