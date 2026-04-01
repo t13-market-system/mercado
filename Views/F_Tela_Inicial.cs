@@ -37,6 +37,7 @@ namespace SistemaLogin
 
             // Não mudar, é da tela produtos
 
+            TB_codigo.MaxLength = 4;
 
             CategoriaDAO dao = new CategoriaDAO();
             DataTable dt = dao.ObterTodas();
@@ -250,6 +251,28 @@ namespace SistemaLogin
                 return;
             }
 
+
+            if(codigo.Length != 4) {
+                MessageBox.Show("Preencha o campo 'Codigo' com 4 digitos !",
+                                "Validação",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            ProdutoDAO produtoDAO = new ProdutoDAO();
+
+            // Verificar duplicado
+            if (produtoDAO.ProdutoExiste(nomeProduto, codigo))
+            {
+                MessageBox.Show("Já existe um produto com esse nome ou codigo de cadastro!",
+                                "Duplicado",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
                 // 2. Converter preço
@@ -272,7 +295,7 @@ namespace SistemaLogin
                 };
 
                 // 5. Salvar
-                ProdutoDAO produtoDAO = new ProdutoDAO();
+                
                 produtoDAO.AdicionarProduto(produto);
 
                 MessageBox.Show("Produto cadastrado com sucesso!",
@@ -284,6 +307,13 @@ namespace SistemaLogin
 
                 DGV_produto.DataSource = null;
                 DGV_produto.DataSource = produt.ListarProdutos();
+
+                
+                DataTable del = produt.ObterTodas();
+
+                CB_delete.DataSource = del;
+                CB_delete.DisplayMember = "produto"; // o nome que aparece
+                CB_delete.ValueMember = "id";        // o ID real
             }
             catch (Exception ex)
             {
@@ -316,6 +346,12 @@ namespace SistemaLogin
 
             DGV_produto.DataSource = null;
             DGV_produto.DataSource = produt.ListarProdutos();
+
+            DataTable del = pro.ObterTodas();
+
+            CB_delete.DataSource = del;
+            CB_delete.DisplayMember = "produto"; // o nome que aparece
+            CB_delete.ValueMember = "id";        // o ID real
         }
     } // Fim da classe
 }
