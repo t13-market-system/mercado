@@ -20,31 +20,28 @@ namespace SistemaLogin.DAO
                 using (var conn = DatabaseConnection.GetConnection())
                 {
                     conn.Open();
-                    string query = "INSERT INTO venda (id_venda, id_pedido, data_venda, id_forma_pagamento) VALUES (@idvenda, @idpedido, @datavenda, @idformapagamento)";
+                    string query = "INSERT INTO venda (id_pedido, data_venda, id_forma_pagamento) VALUES (@id_pedido, @data_venda, @id_forma_pagamento)";
                     using (var cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@idvenda", venda.Id_venda);
-                        cmd.Parameters.AddWithValue("@idpedido", venda.Id_pedido);
-                        cmd.Parameters.AddWithValue("@datavenda", venda.Data_venda);
-                        cmd.Parameters.AddWithValue("@idformapagamento", venda.Id_forma_pagamento);
+                        cmd.Parameters.AddWithValue("@id_venda", venda.Id_venda);
+                        cmd.Parameters.AddWithValue("@id_pedido", venda.Id_pedido);
+                        cmd.Parameters.AddWithValue("@data_venda", venda.Data_venda);
+                        cmd.Parameters.AddWithValue("@id_forma_pagamento", venda.Id_forma_pagamento);
                         cmd.ExecuteNonQuery();
+
                     }
-
-
-
                 }
-
             }
             catch (MySqlException err)
             {
                 if (err.Number == 1062) // Erro de UNIQUE (Duplicidade)
                 {
-                    throw new Exception("Esta categoria já está cadastrada no sistema.");
+                    throw new Exception("Esta venda já está cadastrada no sistema.");
                 }
 
 
                 // Lança uma mensagem mascarada e segura para a interface gráfica
-                throw new Exception("Ocorreu um erro interno ao tentar salvar a categoria.");
+                throw new Exception("Ocorreu um erro interno ao tentar salvar a venda.");
 
             }
 
@@ -52,7 +49,7 @@ namespace SistemaLogin.DAO
 
 
         // Read
-        // este método fará uma consulta no bando de dados e retornará todas as categorias cadastradas
+        // este método fará uma consulta no banco de dados e retornará todas as vendas cadastradas
         public DataTable ObterTodas()
         {
             DataTable dt = new DataTable();
@@ -77,13 +74,13 @@ namespace SistemaLogin.DAO
             using (var conn = DatabaseConnection.GetConnection())
             {
                 conn.Open();
-                string query = "UPDATE venda SET Id_pedido = @idPedido, Data_venda = @dataVenda, Id_forma_pagamento = @idFormaPagamento WHERE Id_venda = @idvenda";
+                string query = "UPDATE venda SET Id_pedido = @id_pedido, Data_venda = @data_venda, Id_forma_pagamento = @id_forma_pagamento WHERE Id_venda = @id_venda";
                 using (var cmd = new MySqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@idvenda", venda.Id_venda);
-                    cmd.Parameters.AddWithValue("@idpedido", venda.Id_pedido);
-                    cmd.Parameters.AddWithValue("@datavenda", venda.Data_venda);
-                    cmd.Parameters.AddWithValue("@idformapagamento", venda.Id_forma_pagamento);
+                    cmd.Parameters.AddWithValue("@id_venda", venda.Id_venda);
+                    cmd.Parameters.AddWithValue("@id_pedido", venda.Id_pedido);
+                    cmd.Parameters.AddWithValue("@data_venda", venda.Data_venda);
+                    cmd.Parameters.AddWithValue("@id_forma_pagamento", venda.Id_forma_pagamento);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -95,13 +92,23 @@ namespace SistemaLogin.DAO
             using (var conn = DatabaseConnection.GetConnection())
             {
                 conn.Open();
-                string query = "DELETE FROM venda WHERE Id_venda = @idvenda";
+                string query = "DELETE FROM venda WHERE Id_venda = @id_venda" +
+                "DELETE FROM venda WHERE Id_pedido = @id_pedido" +
+                "DELETE FROM venda WHERE Data_venda = @data_venda" +
+                "DELETE FROM venda WHERE Id_forma_pagamento = @id_forma_pagamento";
                 using (var cmd = new MySqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@idvenda", id);
-                    cmd.ExecuteNonQuery();
+
+
+                    {
+                        cmd.Parameters.AddWithValue("@id_venda", id);
+                        cmd.Parameters.AddWithValue("@id_pedido", id);
+                        cmd.Parameters.AddWithValue("@data_venda", id);
+                        cmd.Parameters.AddWithValue("@id_forma_pagamento", id);
+                        cmd.ExecuteNonQuery();
+                    }
                 }
-            }
-        } // Fim do Delete
+            } // Fim do Delete
+        }
     }
 }

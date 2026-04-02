@@ -18,6 +18,7 @@ namespace SistemaLogin
 
         CategoriaDAO categoriaDAO = new CategoriaDAO();
         private int idCategoriaSelecionada = 0;
+        private int idProdutoSelecionadao = 0;
 
 
         // fim das variáveis no contexto de F_Tela_Inicial
@@ -37,6 +38,7 @@ namespace SistemaLogin
 
             // Não mudar, é da tela produtos
 
+            TB_codigo.MaxLength = 4;
 
             CategoriaDAO dao = new CategoriaDAO();
             DataTable dt = dao.ObterTodas();
@@ -190,7 +192,9 @@ namespace SistemaLogin
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+           F_Cadastro_Funcionario f_Cadastro_Funcionario = new F_Cadastro_Funcionario();
+            f_Cadastro_Funcionario.ShowDialog();
+            
 
         }
 
@@ -250,6 +254,29 @@ namespace SistemaLogin
                 return;
             }
 
+
+            if (codigo.Length != 4)
+            {
+                MessageBox.Show("Preencha o campo 'Codigo' com 4 digitos !",
+                                "Validação",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            ProdutoDAO produtoDAO = new ProdutoDAO();
+
+            // Verificar duplicado
+            if (produtoDAO.ProdutoExiste(nomeProduto, codigo))
+            {
+                MessageBox.Show("Já existe um produto com esse nome ou codigo de cadastro!",
+                                "Duplicado",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
                 // 2. Converter preço
@@ -272,7 +299,7 @@ namespace SistemaLogin
                 };
 
                 // 5. Salvar
-                ProdutoDAO produtoDAO = new ProdutoDAO();
+
                 produtoDAO.AdicionarProduto(produto);
 
                 MessageBox.Show("Produto cadastrado com sucesso!",
@@ -284,6 +311,13 @@ namespace SistemaLogin
 
                 DGV_produto.DataSource = null;
                 DGV_produto.DataSource = produt.ListarProdutos();
+
+
+                DataTable del = produt.ObterTodas();
+
+                CB_delete.DataSource = del;
+                CB_delete.DisplayMember = "produto"; // o nome que aparece
+                CB_delete.ValueMember = "id";        // o ID real
             }
             catch (Exception ex)
             {
@@ -316,6 +350,82 @@ namespace SistemaLogin
 
             DGV_produto.DataSource = null;
             DGV_produto.DataSource = produt.ListarProdutos();
+
+            DataTable del = pro.ObterTodas();
+
+            CB_delete.DataSource = del;
+            CB_delete.DisplayMember = "produto"; // o nome que aparece
+            CB_delete.ValueMember = "id";        // o ID real
+        }
+
+        private void DGV_produto_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow linhaSelecionada = DGV_produto.Rows[e.RowIndex];
+
+                idProdutoSelecionadao= Convert.ToInt32(linhaSelecionada.Cells["id_produto"].Value);
+
+                tb_nomeProduto.Text = linhaSelecionada.Cells["nome_produto"].Value?.ToString();
+                TB_precoProduto.Text = linhaSelecionada.Cells["preco_produto"].Value?.ToString();
+                TB_codigo.Text = linhaSelecionada.Cells["codigo_produto"].Value?.ToString();
+
+                CB_categoria.SelectedValue = linhaSelecionada.Cells["id_categoria"].Value;
+                CB_fornecedor.SelectedValue = linhaSelecionada.Cells["id_fornecedor"].Value;
+                CB_delete.SelectedValue = linhaSelecionada.Cells["id_produto"].Value;
+            }
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            // Verifica se a variável ainda é 0 (ou seja, nada foi clicado)
+            if ( idProdutoSelecionadao == 0)
+            {
+                MessageBox.Show("Por favor, selecione uma categoria na tabela primeiro.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(tb_nomeProduto.Text.Trim()))
+            {
+                MessageBox.Show("O Nome do Produto não pode ficar vazio.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if(string.IsNullOrEmpty(TB_precoProduto.Text.Trim()))
+            {
+                MessageBox.Show("O preco Produto não pode ficar vazio.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrEmpty(TB_codigo.Text.Trim()))
+            {
+                MessageBox.Show("O codigo Produto não pode ficar vazio.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Usa a variável diretamente na criação do objeto
+              Produto produto = new Produto();
+            
+
+                produto.Id_produto = idProdutoSelecionadao;
+                produto.Nome_produto = tb_categoria.Text.Trim();
+            
+
+            try
+            {
+                //categoriaDAO.Atualizar(categoriaAtualizada);
+
+                MessageBox.Show("Categoria atualizada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Limpa a caixa de texto e RESETA a variável para 0
+                tb_categoria.Clear();
+                idCategoriaSelecionada = 0;
+
+                CarregarCategoria();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Cadastrar_Click(object sender, EventArgs e)
