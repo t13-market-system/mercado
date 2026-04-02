@@ -44,6 +44,7 @@
             button4 = new Button();
             dgvCategorias = new DataGridView();
             tabPage1 = new TabPage();
+            label7 = new Label();
             button8 = new Button();
             CB_delete = new ComboBox();
             BT_Add = new Button();
@@ -61,7 +62,7 @@
             panel2 = new Panel();
             label1 = new Label();
             pictureBox1 = new PictureBox();
-            label7 = new Label();
+            button9 = new Button();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             panel1.SuspendLayout();
@@ -249,6 +250,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(button9);
             tabPage1.Controls.Add(label7);
             tabPage1.Controls.Add(button8);
             tabPage1.Controls.Add(CB_delete);
@@ -271,6 +273,16 @@
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Location = new Point(136, 410);
+            label7.Name = "label7";
+            label7.Size = new Size(157, 25);
+            label7.TabIndex = 16;
+            label7.Text = "Apagar Produto";
             // 
             // button8
             // 
@@ -296,7 +308,7 @@
             BT_Add.BackColor = Color.Green;
             BT_Add.Location = new Point(96, 321);
             BT_Add.Name = "BT_Add";
-            BT_Add.Size = new Size(236, 23);
+            BT_Add.Size = new Size(236, 32);
             BT_Add.TabIndex = 13;
             BT_Add.Text = "Adicionar";
             BT_Add.UseVisualStyleBackColor = false;
@@ -378,6 +390,7 @@
             DGV_produto.Name = "DGV_produto";
             DGV_produto.Size = new Size(596, 555);
             DGV_produto.TabIndex = 2;
+            DGV_produto.CellContentClick += DGV_produto_CellContentClick;
             // 
             // CB_fornecedor
             // 
@@ -425,15 +438,16 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // label7
+            // button9
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(136, 410);
-            label7.Name = "label7";
-            label7.Size = new Size(157, 25);
-            label7.TabIndex = 16;
-            label7.Text = "Apagar Produto";
+            button9.BackColor = Color.Turquoise;
+            button9.Location = new Point(96, 359);
+            button9.Name = "button9";
+            button9.Size = new Size(236, 23);
+            button9.TabIndex = 17;
+            button9.Text = "Atulizar";
+            button9.UseVisualStyleBackColor = false;
+            button9.Click += button9_Click;
             // 
             // F_Tela_Inicial
             // 
@@ -498,5 +512,6 @@
         private Button button8;
         private ComboBox CB_delete;
         private Label label7;
+        private Button button9;
     }
 }
