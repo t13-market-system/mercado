@@ -27,7 +27,7 @@
             btnCancelar = new Button();
             pnlFooter = new Panel();
             pnlBody = new Panel();
-            textBox1 = new TextBox();
+            txtPais = new TextBox();
             cmbEstado = new ComboBox();
             pictureBox1 = new PictureBox();
             lblContatoSecao = new Label();
@@ -165,7 +165,7 @@
             // 
             pnlBody.AutoScroll = true;
             pnlBody.BackColor = Color.FromArgb(245, 235, 220);
-            pnlBody.Controls.Add(textBox1);
+            pnlBody.Controls.Add(txtPais);
             pnlBody.Controls.Add(cmbEstado);
             pnlBody.Controls.Add(pictureBox1);
             pnlBody.Controls.Add(lblContatoSecao);
@@ -201,15 +201,15 @@
             pnlBody.Size = new Size(1024, 466);
             pnlBody.TabIndex = 0;
             // 
-            // textBox1
+            // txtPais
             // 
-            textBox1.ForeColor = Color.Black;
-            textBox1.Location = new Point(20, 289);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(250, 23);
-            textBox1.TabIndex = 31;
-            textBox1.Text = "Brasil";
+            txtPais.ForeColor = Color.Black;
+            txtPais.Location = new Point(20, 289);
+            txtPais.Name = "txtPais";
+            txtPais.ReadOnly = true;
+            txtPais.Size = new Size(250, 23);
+            txtPais.TabIndex = 31;
+            txtPais.Text = "Brasil";
             // 
             // cmbEstado
             // 
@@ -465,7 +465,6 @@
             txtNumero.Name = "txtNumero";
             txtNumero.Size = new Size(120, 25);
             txtNumero.TabIndex = 23;
-            
             // 
             // lblCep
             // 
@@ -574,6 +573,6 @@
         private Label lblComplemento;
         private TextBox txtComplemento;
         private ComboBox cmbEstado;
-        private TextBox textBox1;
+        private TextBox txtPais;
     }
 }
