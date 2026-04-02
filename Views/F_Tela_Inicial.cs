@@ -364,7 +364,7 @@ namespace SistemaLogin
             {
                 DataGridViewRow linhaSelecionada = DGV_produto.Rows[e.RowIndex];
 
-                idProdutoSelecionadao= Convert.ToInt32(linhaSelecionada.Cells["id_produto"].Value);
+                idProdutoSelecionadao = Convert.ToInt32(linhaSelecionada.Cells["id_produto"].Value);
 
                 tb_nomeProduto.Text = linhaSelecionada.Cells["nome_produto"].Value?.ToString();
                 TB_precoProduto.Text = linhaSelecionada.Cells["preco_produto"].Value?.ToString();
@@ -379,10 +379,9 @@ namespace SistemaLogin
 
         private void button9_Click(object sender, EventArgs e)
         {
-            // Verifica se a variável ainda é 0 (ou seja, nada foi clicado)
-            if ( idProdutoSelecionadao == 0)
+            if (idProdutoSelecionadao == 0)
             {
-                MessageBox.Show("Por favor, selecione uma categoria na tabela primeiro.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, selecione um produto na tabela primeiro.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -391,36 +390,57 @@ namespace SistemaLogin
                 MessageBox.Show("O Nome do Produto não pode ficar vazio.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(string.IsNullOrEmpty(TB_precoProduto.Text.Trim()))
+
+            if (string.IsNullOrEmpty(TB_precoProduto.Text.Trim()))
             {
-                MessageBox.Show("O preco Produto não pode ficar vazio.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("O preço do Produto não pode ficar vazio.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             if (string.IsNullOrEmpty(TB_codigo.Text.Trim()))
             {
-                MessageBox.Show("O codigo Produto não pode ficar vazio.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("O código do Produto não pode ficar vazio.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Usa a variável diretamente na criação do objeto
-              Produto produto = new Produto();
-            
+            Produto produto = new Produto();
 
-                produto.Id_produto = idProdutoSelecionadao;
-                produto.Nome_produto = tb_categoria.Text.Trim();
-            
+            produto.Id_produto = idProdutoSelecionadao;
+            produto.Nome_produto = tb_nomeProduto.Text.Trim();
+            produto.Preco_produto = Convert.ToDecimal(TB_precoProduto.Text);
+            produto.Codigo_produto = TB_codigo.Text.Trim();
+            produto.Id_categoria = Convert.ToInt32(CB_categoria.SelectedValue);
+            produto.Id_fornecedor = Convert.ToInt32(CB_fornecedor.SelectedValue);
 
+            if (produto.Id_categoria <= 0)
+            {
+                MessageBox.Show("Categoria inválida.");
+                return;
+            }
+
+            if (produto.Id_fornecedor <= 0)
+            {
+                MessageBox.Show("Fornecedor inválido.");
+                return;
+            }
             try
             {
-                //categoriaDAO.Atualizar(categoriaAtualizada);
+                ProdutoDAO produtoDAO = new ProdutoDAO();
+                produtoDAO.Atualizar(produto);
 
-                MessageBox.Show("Categoria atualizada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Produto atualizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Limpa a caixa de texto e RESETA a variável para 0
-                tb_categoria.Clear();
-                idCategoriaSelecionada = 0;
+                tb_nomeProduto.Clear();
+                TB_precoProduto.Clear();
+                TB_codigo.Clear();
 
-                CarregarCategoria();
+                idProdutoSelecionadao = 0;
+
+                ProdutoDAO produt = new ProdutoDAO();
+
+                DGV_produto.DataSource = null;
+                DGV_produto.DataSource = produt.ListarProdutos();
+
             }
             catch (Exception ex)
             {
