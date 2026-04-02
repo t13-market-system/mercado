@@ -13,6 +13,9 @@
     <Compile Update="Views\F_Cad_Fornecedor.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Views\F_Relatório_Vendas.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Views\F_Tela_de_Venda.cs">
       <SubType>Form</SubType>
     </Compile>

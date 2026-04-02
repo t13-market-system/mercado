@@ -192,7 +192,9 @@ namespace SistemaLogin
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+           F_Cadastro_Funcionario f_Cadastro_Funcionario = new F_Cadastro_Funcionario();
+            f_Cadastro_Funcionario.ShowDialog();
+            
 
         }
 
@@ -444,6 +446,11 @@ namespace SistemaLogin
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        } // Fim da classe
-    }
+        }
+
+        private void Cadastrar_Click(object sender, EventArgs e)
+        {
+
+        }
+    } // Fim da classe
 }

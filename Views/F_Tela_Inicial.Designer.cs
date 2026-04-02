@@ -196,6 +196,7 @@
             Cadastrar.TabIndex = 0;
             Cadastrar.Text = "Categorias";
             Cadastrar.UseVisualStyleBackColor = true;
+            Cadastrar.Click += Cadastrar_Click;
             // 
             // button6
             // 
