@@ -49,7 +49,7 @@ namespace SistemaLogin.DAO
             using (var conn = DatabaseConnection.GetConnection())
             {
                 conn.Open();
-                string query = "SELECT id_funcionario AS 'ID', nome_funcionario AS 'fornecedor' FROM ffuncionario";
+                string query = "SELECT * FROM vw_funcionario";
                 using (var cmd = new MySqlCommand(query, conn))
                 {
                     using (var da = new MySqlDataAdapter(cmd))
