@@ -192,9 +192,9 @@ namespace SistemaLogin
 
         private void button2_Click(object sender, EventArgs e)
         {
-           F_Cadastro_Funcionario f_Cadastro_Funcionario = new F_Cadastro_Funcionario();
+            F_Cadastro_Funcionario f_Cadastro_Funcionario = new F_Cadastro_Funcionario();
             f_Cadastro_Funcionario.ShowDialog();
-            
+
 
         }
 
@@ -449,6 +449,11 @@ namespace SistemaLogin
         }
 
         private void Cadastrar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CB_fornecedor_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

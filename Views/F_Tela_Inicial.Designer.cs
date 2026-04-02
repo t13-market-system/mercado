@@ -44,6 +44,7 @@
             button4 = new Button();
             dgvCategorias = new DataGridView();
             tabPage1 = new TabPage();
+            button9 = new Button();
             label7 = new Label();
             button8 = new Button();
             CB_delete = new ComboBox();
@@ -62,7 +63,6 @@
             panel2 = new Panel();
             label1 = new Label();
             pictureBox1 = new PictureBox();
-            button9 = new Button();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             panel1.SuspendLayout();
@@ -275,6 +275,17 @@
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
             // 
+            // button9
+            // 
+            button9.BackColor = Color.Turquoise;
+            button9.Location = new Point(96, 359);
+            button9.Name = "button9";
+            button9.Size = new Size(236, 23);
+            button9.TabIndex = 17;
+            button9.Text = "Atulizar";
+            button9.UseVisualStyleBackColor = false;
+            button9.Click += button9_Click;
+            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -400,6 +411,7 @@
             CB_fornecedor.Name = "CB_fornecedor";
             CB_fornecedor.Size = new Size(236, 23);
             CB_fornecedor.TabIndex = 1;
+            CB_fornecedor.SelectedIndexChanged += CB_fornecedor_SelectedIndexChanged;
             // 
             // CB_categoria
             // 
@@ -438,17 +450,6 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
-            // 
-            // button9
-            // 
-            button9.BackColor = Color.Turquoise;
-            button9.Location = new Point(96, 359);
-            button9.Name = "button9";
-            button9.Size = new Size(236, 23);
-            button9.TabIndex = 17;
-            button9.Text = "Atulizar";
-            button9.UseVisualStyleBackColor = false;
-            button9.Click += button9_Click;
             // 
             // F_Tela_Inicial
             // 

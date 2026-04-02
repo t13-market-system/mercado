@@ -14,33 +14,43 @@ namespace SistemaLogin.DAO
         public void Adicionarfuncionarios(funcionarios funcionarios, Endereco_funcionario endereco, contato_funcionario contato)
         {
             using (var conn = DatabaseConnection.GetConnection())
-
+            { 
                 try
                 {
                     conn.Open();
-                    MySqlCommand cmd = new MySqlCommand("cadastrar_fornecedor", conn);
+
+                    
+                    MySqlCommand cmd = new MySqlCommand("cadastrar_funcionario", conn);
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    // Parâmetros
+
+                  
                     cmd.Parameters.AddWithValue("@f_nome", funcionarios.Nome);
                     cmd.Parameters.AddWithValue("@f_cpf", funcionarios.cpf_funcionario);
                     cmd.Parameters.AddWithValue("@f_email", funcionarios.email_funcionario);
+                    cmd.Parameters.AddWithValue("@f_id_cargo", funcionarios.id_cargo); 
+
+             
                     cmd.Parameters.AddWithValue("@f_telefone", contato.telefone_funcionario);
+
+                    
                     cmd.Parameters.AddWithValue("@f_pais", endereco.Pais_funcionario);
                     cmd.Parameters.AddWithValue("@f_estado", endereco.Estado_funcionario);
                     cmd.Parameters.AddWithValue("@f_cidade", endereco.Cidade_funcionario);
-                    cmd.Parameters.AddWithValue("@f_rua", endereco.Bairro_funcionario);
-                    cmd.Parameters.AddWithValue("@f_bairro", endereco.Rua_funcionario);
-                    cmd.Parameters.AddWithValue("@f_numero", endereco.Cep_funcionario);
-                    cmd.Parameters.AddWithValue("@f_cep", endereco.Numero_rua);
+                    cmd.Parameters.AddWithValue("@f_rua", endereco.Rua_funcionario);           
+                    cmd.Parameters.AddWithValue("@f_bairro", endereco.Bairro_funcionario);       
+                    cmd.Parameters.AddWithValue("@f_numero", endereco.Numero_rua);               
+                    cmd.Parameters.AddWithValue("@f_cep", endereco.Cep_funcionario);             
                     cmd.Parameters.AddWithValue("@f_complemento", endereco.Complemento_funcionario);
+
                     cmd.ExecuteNonQuery();
-                    Console.WriteLine("Fornecedor cadastrado com sucesso!");
+                    Console.WriteLine("Funcionário cadastrado com sucesso!");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Erro: " + ex.Message);
+                    Console.WriteLine("Erro: " + ex.Message);                    
+                    throw;
                 }
-
+            }
         }
 
         public DataTable Listfuncionario()
