@@ -427,5 +427,10 @@ namespace SistemaLogin
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void Cadastrar_Click(object sender, EventArgs e)
+        {
+
+        }
     } // Fim da classe
 }
