@@ -14,9 +14,13 @@ namespace SistemaLogin
 {
     public partial class F_Cadastro_Funcionario : Form
     {
+
+        FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
         public F_Cadastro_Funcionario()
         {
             InitializeComponent();
+
+            CarregarFuncionario();
         }
 
         private void F_Cadastro_Funcionario_Load(object sender, EventArgs e)
@@ -54,19 +58,9 @@ namespace SistemaLogin
 
 
 
-
-
-
-
-
-
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-
-        }
 
         private void btn_deletar_Click(object sender, EventArgs e)
         {
@@ -96,19 +90,19 @@ namespace SistemaLogin
 
             funcionario.Nome = txtNome.Text.Trim();
             funcionario.email_funcionario = txtEmail.Text.Trim();
-            
+
 
             Endereco_funcionario endereco = new Endereco_funcionario();
             endereco.Pais_funcionario = txtPais.Text.Trim();
             endereco.Estado_funcionario = txtEstado.Text.Trim();
             endereco.Cidade_funcionario = txtEstado.Text.Trim();
-            endereco.Bairro_funcionario =txtBairro.Text.Trim(); 
-            endereco.Rua_funcionario=txtRua.Text.Trim();    
-            endereco.Numero_rua = txtNumero.Text.Trim();    
+            endereco.Bairro_funcionario = txtBairro.Text.Trim();
+            endereco.Rua_funcionario = txtRua.Text.Trim();
+            endereco.Numero_rua = txtNumero.Text.Trim();
             endereco.Cep_funcionario = txt_cep.Text.Trim();
-            endereco.Complemento_funcionario = txtComplemento.Text.Trim();  
-          
-            
+            endereco.Complemento_funcionario = txtComplemento.Text.Trim();
+
+
 
             contato_funcionario contato = new contato_funcionario();
             contato.telefone_funcionario = txtTelefone.Text.Trim();
@@ -118,6 +112,16 @@ namespace SistemaLogin
             dao.AtualizarFuncionario(funcionario, endereco, contato);
             MessageBox.Show("");
             txtNome.Clear();
+        }
+
+        private void dgv_funcionario_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void CarregarFuncionario()
+        {
+            dgv_funcionario.DataSource = funcionarioDAO.Listfuncionario();
         }
     }
 }

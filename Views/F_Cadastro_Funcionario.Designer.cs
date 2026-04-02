@@ -57,11 +57,11 @@
             lbl_cep = new Label();
             txt_cep = new TextBox();
             panel1 = new Panel();
-            dataGridView1 = new DataGridView();
+            dgv_funcionario = new DataGridView();
             btn_deletar = new Button();
             btn_atualizar = new Button();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_funcionario).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -331,21 +331,21 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(dataGridView1);
+            panel1.Controls.Add(dgv_funcionario);
             panel1.Location = new Point(540, 3);
             panel1.Name = "panel1";
             panel1.Size = new Size(577, 493);
             panel1.TabIndex = 29;
             // 
-            // dataGridView1
+            // dgv_funcionario
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(0, 0);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(577, 493);
-            dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dgv_funcionario.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_funcionario.Dock = DockStyle.Fill;
+            dgv_funcionario.Location = new Point(0, 0);
+            dgv_funcionario.Name = "dgv_funcionario";
+            dgv_funcionario.Size = new Size(577, 493);
+            dgv_funcionario.TabIndex = 0;
+            dgv_funcionario.CellContentClick += dgv_funcionario_CellContentClick;
             // 
             // btn_deletar
             // 
@@ -414,7 +414,7 @@
             Text = "F_Cadastro_Funcionario";
             Load += F_Cadastro_Funcionario_Load;
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_funcionario).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -450,7 +450,7 @@
         private Label lbl_cep;
         private TextBox txt_cep;
         private Panel panel1;
-        private DataGridView dataGridView1;
+        private DataGridView dgv_funcionario;
         private Button btn_deletar;
         private Button btn_atualizar;
     }
