@@ -44,6 +44,7 @@
             button4 = new Button();
             dgvCategorias = new DataGridView();
             tabPage1 = new TabPage();
+            label7 = new Label();
             button8 = new Button();
             CB_delete = new ComboBox();
             BT_Add = new Button();
@@ -61,7 +62,6 @@
             panel2 = new Panel();
             label1 = new Label();
             pictureBox1 = new PictureBox();
-            label7 = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             panel1.SuspendLayout();
@@ -195,6 +195,7 @@
             Cadastrar.TabIndex = 0;
             Cadastrar.Text = "Categorias";
             Cadastrar.UseVisualStyleBackColor = true;
+            Cadastrar.Click += Cadastrar_Click;
             // 
             // button6
             // 
@@ -271,6 +272,16 @@
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Location = new Point(136, 410);
+            label7.Name = "label7";
+            label7.Size = new Size(157, 25);
+            label7.TabIndex = 16;
+            label7.Text = "Apagar Produto";
             // 
             // button8
             // 
@@ -424,16 +435,6 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(136, 410);
-            label7.Name = "label7";
-            label7.Size = new Size(157, 25);
-            label7.TabIndex = 16;
-            label7.Text = "Apagar Produto";
             // 
             // F_Tela_Inicial
             // 

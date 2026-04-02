@@ -190,7 +190,7 @@ namespace SistemaLogin
 
         private void button2_Click(object sender, EventArgs e)
         {
-          
+
 
         }
 
@@ -316,6 +316,11 @@ namespace SistemaLogin
 
             DGV_produto.DataSource = null;
             DGV_produto.DataSource = produt.ListarProdutos();
+        }
+
+        private void Cadastrar_Click(object sender, EventArgs e)
+        {
+
         }
     } // Fim da classe
 }
