@@ -25,7 +25,7 @@ namespace SistemaLogin
 
         private void F_Cadastro_Funcionario_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void label10_Click(object sender, EventArgs e)
@@ -45,8 +45,19 @@ namespace SistemaLogin
             funcionarios novofuncionario = new funcionarios();
 
             novofuncionario.Nome = txtNome.Text.Trim();
+            novofuncionario.email_funcionario = txtEmail.Text.Trim();
+            novofuncionario.cpf_funcionario= txtCPF.Text.Trim();    
+
 
             Endereco_funcionario endereco = new Endereco_funcionario();
+            endereco.Pais_funcionario = txtPais.Text.Trim();    
+            endereco.Estado_funcionario = txtEstado.Text.Trim();    
+            endereco.Cidade_funcionario = txtCidade.Text.Trim();    
+            endereco.Bairro_funcionario = txtBairro.Text.Trim();
+            endereco.Rua_funcionario = txtRua.Text.Trim();  
+            endereco.Numero_rua = txtNumero.Text.Trim();    
+            endereco.Cep_funcionario = txt_cep.Text.Trim(); 
+            endereco.Complemento_funcionario = txtComplemento.Text.Trim();
 
             contato_funcionario contato = new contato_funcionario();
 
@@ -71,6 +82,14 @@ namespace SistemaLogin
             novofuncionario.Nome = txtNome.Text.Trim();
 
             Endereco_funcionario endereco = new Endereco_funcionario();
+            endereco.Pais_funcionario = txtPais.Text.Trim();
+            endereco.Estado_funcionario = txtEstado.Text.Trim();
+            endereco.Cidade_funcionario = txtCidade.Text.Trim();
+            endereco.Bairro_funcionario = txtBairro.Text.Trim();
+            endereco.Rua_funcionario= txtRua.Text.Trim();
+            endereco.Cep_funcionario =txt_cep.Text.Trim();
+            endereco.Numero_rua = txtNumero.Text.Trim();
+            endereco.Complemento_funcionario = txtComplemento.Text.Trim();  
 
             contato_funcionario contato = new contato_funcionario();
 

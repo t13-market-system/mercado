@@ -192,7 +192,9 @@ namespace SistemaLogin
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+           F_Cadastro_Funcionario f_Cadastro_Funcionario = new F_Cadastro_Funcionario();
+            f_Cadastro_Funcionario.ShowDialog();
+            
 
         }
 
