@@ -92,12 +92,172 @@ namespace SistemaLogin.DAO
             using (var conn = DatabaseConnection.GetConnection())
             {
                 conn.Open();
-                string query = "DELETE FROM venda WHERE Id_venda = @id_venda" +
-                "DELETE FROM venda WHERE Id_pedido = @id_pedido" +
-                "DELETE FROM venda WHERE Data_venda = @data_venda" +
-                "DELETE FROM venda WHERE Id_forma_pagamento = @id_forma_pagamento";
+                string query = "DELETE FROM venda WHERE Id_venda = @idvenda";
                 using (var cmd = new MySqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@idvenda", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        } // Fim do Delete
+
+        public decimal ObterFaturamentoHoje(Venda venda)
+        {
+            using (var conn = DatabaseConnection.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT COALESCE(SUM(pi.quantidade_item * pi.preco_unitario), 0) " +
+                               "FROM venda v " +
+                               "INNER JOIN pedido_item pi ON v.id_pedido = pi.id_pedido " +
+                               "WHERE DATE(v.data_venda) = CURDATE()";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    return Convert.ToDecimal(cmd.ExecuteScalar());
+                }
+            }
+        }
+        public int ObterQuantidadeItensHoje()
+        {
+            using (var conn = DatabaseConnection.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT COALESCE(SUM(pi.quantidade_item), 0) " +
+                               "FROM venda v " +
+                               "INNER JOIN pedido_item pi ON v.id_pedido = pi.id_pedido " +
+                               "WHERE DATE(v.data_venda) = CURDATE()";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+        }
+        public string ObterProdutosMaisVendidosHoje()
+        {
+            using (var conn = DatabaseConnection.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT p.nome_produto " +
+                               "FROM venda v " +
+                               "INNER JOIN pedido_item pi ON v.id_pedido = pi.id_pedido " +
+                               "INNER JOIN produto p ON pi.id_produto = p.id_produto " +
+                               "WHERE DATE(v.data_venda) = CURDATE() " +
+                               "GROUP BY p.id_produto, p.nome_produto " +
+                               "ORDER BY SUM(pi.quantidade_item) DESC " +
+                               "LIMIT 3";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        var produtos = new List<string>();
+                        int posicao = 1;
+
+                        while (reader.Read())
+                        {
+                            produtos.Add($"{posicao}º {reader.GetString("nome_produto")}");
+                            posicao++;
+                        }
+
+                        return produtos.Count > 0
+                            ? string.Join("\n", produtos)
+                            : "Nenhum produto vendido hoje";
+                    }
+                }
+            }
+        }
+        public string ObterCategoriasMaisVendidasHoje()
+        {
+            using (var conn = DatabaseConnection.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT c.nome_categoria " +
+                               "FROM venda v " +
+                               "INNER JOIN pedido_item pi ON v.id_pedido = pi.id_pedido " +
+                               "INNER JOIN produto p ON pi.id_produto = p.id_produto " +
+                               "INNER JOIN categoria c ON p.id_categoria = c.id_categoria " +
+                               "WHERE DATE(v.data_venda) = CURDATE() " +
+                               "GROUP BY c.id_categoria, c.nome_categoria " +
+                               "ORDER BY SUM(pi.quantidade_item) DESC " +
+                               "LIMIT 3";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        var categorias = new List<string>();
+                        int posicao = 1;
+
+                        while (reader.Read())
+                        {
+                            categorias.Add($"{posicao}º {reader.GetString("nome_categoria")}");
+                            posicao++;
+                        }
+
+                        return categorias.Count > 0
+                            ? string.Join("\n", categorias)
+                            : "Nenhuma categoria vendida hoje";
+                    }
+                }
+            }
+        }
+        public void FinalizarVenda(List<int> idsProdutos)
+        {
+            using (var conn = DatabaseConnection.GetConnection())
+            {
+                conn.Open();
+                using (var transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        // 1. Cria o pedido
+                        int idPedido;
+                        using (var cmd = new MySqlCommand("INSERT INTO pedido (cpf) VALUES (0)", conn, transaction))
+                        {
+                            cmd.ExecuteNonQuery();
+                            idPedido = (int)cmd.LastInsertedId;
+                        }
+
+                        // 2. Cria a venda
+                        using (var cmd = new MySqlCommand(
+                            "INSERT INTO venda (id_pedido, data_venda, id_forma_pagamento) VALUES (@idPedido, NOW(), 1)",
+                            conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@idPedido", idPedido);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        // 3. Insere cada produto
+                        foreach (int idProduto in idsProdutos)
+                        {
+                            decimal preco;
+                            using (var cmd = new MySqlCommand(
+                                "SELECT preco_produto FROM produto WHERE id_produto = @id", conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@id", idProduto);
+                                preco = Convert.ToDecimal(cmd.ExecuteScalar());
+                            }
+
+                            using (var cmd = new MySqlCommand(
+                                "INSERT INTO pedido_item (id_pedido, id_produto, quantidade_item, preco_unitario) VALUES (@idPedido, @idProduto, 1, @preco)",
+                                conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@idPedido", idPedido);
+                                cmd.Parameters.AddWithValue("@idProduto", idProduto);
+                                cmd.Parameters.AddWithValue("@preco", preco);
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+        }
+    }
+}
 
 
                     {
