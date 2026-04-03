@@ -70,21 +70,36 @@ namespace SistemaLogin.DAO
             }
             return dt;
         } // Fim do Read
+
+
+
+
+
+
         public void AtualizarFuncionario(funcionarios funcionario, Endereco_funcionario endereco, contato_funcionario contato)
         {
             using (var conn = DatabaseConnection.GetConnection())
             {
                 conn.Open();
-                string query = "UPDATE funcionario SET nome_funcionario = @nome_funcionario WHERE id_funcionario = @id";
+                // Os nomes com @ aqui...
+                string query = "UPDATE funcionario SET nome_funcionario = @nome_funcionario WHERE id_funcionario = @id_funcionario";
 
                 using (var cmd = new MySqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@nome_fornecedor", funcionario.Nome);
-                    cmd.Parameters.AddWithValue("@id", funcionario.id_cargo);
+                    // ...precisam ser exatamente iguais aqui embaixo!
+                    cmd.Parameters.AddWithValue("@nome_funcionario", funcionario.Nome);
+
+                    // ATENÇÃO: Aqui deve ser o ID do funcionário que vai ser editado, não o ID do cargo!
+                    cmd.Parameters.AddWithValue("@id_funcionario", funcionario.Id);
+
                     cmd.ExecuteNonQuery();
                 }
             }
-        } // Fim do Update
+        }
+
+
+
+
         public void ExcluirFuncionario(funcionarios novofuncionario, Endereco_funcionario endereco, int id)
         {
             using (var conn = DatabaseConnection.GetConnection())
