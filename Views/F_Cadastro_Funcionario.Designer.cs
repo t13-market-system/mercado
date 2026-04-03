@@ -53,7 +53,7 @@
             label12 = new Label();
             txtComplemento = new TextBox();
             label13 = new Label();
-            cbcCargos = new ComboBox();
+            cbCargo = new ComboBox();
             lbl_cep = new Label();
             txt_cep = new TextBox();
             panel1 = new Panel();
@@ -303,13 +303,13 @@
             label13.TabIndex = 25;
             label13.Text = "Cargos : ";
             // 
-            // cbcCargos
+            // cbCargo
             // 
-            cbcCargos.FormattingEnabled = true;
-            cbcCargos.Location = new Point(314, 119);
-            cbcCargos.Name = "cbcCargos";
-            cbcCargos.Size = new Size(157, 23);
-            cbcCargos.TabIndex = 26;
+            cbCargo.FormattingEnabled = true;
+            cbCargo.Location = new Point(314, 119);
+            cbCargo.Name = "cbCargo";
+            cbCargo.Size = new Size(157, 23);
+            cbCargo.TabIndex = 26;
             // 
             // lbl_cep
             // 
@@ -384,7 +384,7 @@
             Controls.Add(panel1);
             Controls.Add(txt_cep);
             Controls.Add(lbl_cep);
-            Controls.Add(cbcCargos);
+            Controls.Add(cbCargo);
             Controls.Add(label13);
             Controls.Add(txtComplemento);
             Controls.Add(label12);
@@ -446,7 +446,7 @@
         private Label label12;
         private TextBox txtComplemento;
         private Label label13;
-        private ComboBox cbcCargos;
+        private ComboBox cbCargo;
         private Label lbl_cep;
         private TextBox txt_cep;
         private Panel panel1;

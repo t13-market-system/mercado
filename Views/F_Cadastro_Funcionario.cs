@@ -43,32 +43,49 @@ namespace SistemaLogin
             if (string.IsNullOrEmpty(txtNome.Text.Trim())) return;
 
             funcionarios novofuncionario = new funcionarios();
-
             novofuncionario.Nome = txtNome.Text.Trim();
             novofuncionario.email_funcionario = txtEmail.Text.Trim();
-            novofuncionario.cpf_funcionario= txtCPF.Text.Trim();    
+            novofuncionario.cpf_funcionario = txtCPF.Text.Trim();
 
+            if (cbCargo.SelectedValue != null)
+            {
+           
+                novofuncionario.id_cargo = Convert.ToInt32(cbCargo.SelectedValue);
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecione um cargo para o funcionário!");
+                return; 
+            }
 
+            // 2. DADOS DE ENDEREÇO
             Endereco_funcionario endereco = new Endereco_funcionario();
-            endereco.Pais_funcionario = txtPais.Text.Trim();    
-            endereco.Estado_funcionario = txtEstado.Text.Trim();    
-            endereco.Cidade_funcionario = txtCidade.Text.Trim();    
+            endereco.Pais_funcionario = txtPais.Text.Trim();
+            endereco.Estado_funcionario = txtEstado.Text.Trim();
+            endereco.Cidade_funcionario = txtCidade.Text.Trim();
             endereco.Bairro_funcionario = txtBairro.Text.Trim();
-            endereco.Rua_funcionario = txtRua.Text.Trim();  
-            endereco.Numero_rua = txtNumero.Text.Trim();    
-            endereco.Cep_funcionario = txt_cep.Text.Trim(); 
+            endereco.Rua_funcionario = txtRua.Text.Trim();
+            endereco.Numero_rua = txtNumero.Text.Trim();
+            endereco.Cep_funcionario = txt_cep.Text.Trim();
             endereco.Complemento_funcionario = txtComplemento.Text.Trim();
 
+         
             contato_funcionario contato = new contato_funcionario();
+          
+            contato.telefone_funcionario = txtTelefone.Text.Trim(); 
 
             FuncionarioDAO dao = new FuncionarioDAO();
-
-            dao.Adicionarfuncionarios(novofuncionario, endereco, contato);
-            MessageBox.Show("funcionario adicionado com sucesso");
-            txtNome.Clear();
-
-
-
+            try
+            {
+                dao.Adicionarfuncionarios(novofuncionario, endereco, contato);
+                MessageBox.Show("Funcionário adicionado com sucesso!");
+                txtNome.Clear();
+                // Dica: Seria bom limpar os outros campos de texto aqui também!
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao cadastrar: " + ex.Message);
+            }
         }
 
 
