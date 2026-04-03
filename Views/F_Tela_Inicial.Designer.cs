@@ -44,6 +44,7 @@
             button4 = new Button();
             dgvCategorias = new DataGridView();
             tabPage1 = new TabPage();
+            button9 = new Button();
             label7 = new Label();
             button8 = new Button();
             CB_delete = new ComboBox();
@@ -250,6 +251,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(button9);
             tabPage1.Controls.Add(label7);
             tabPage1.Controls.Add(button8);
             tabPage1.Controls.Add(CB_delete);
@@ -272,6 +274,17 @@
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
+            // 
+            // button9
+            // 
+            button9.BackColor = Color.Turquoise;
+            button9.Location = new Point(96, 359);
+            button9.Name = "button9";
+            button9.Size = new Size(236, 23);
+            button9.TabIndex = 17;
+            button9.Text = "Atulizar";
+            button9.UseVisualStyleBackColor = false;
+            button9.Click += button9_Click;
             // 
             // label7
             // 
@@ -307,7 +320,7 @@
             BT_Add.BackColor = Color.Green;
             BT_Add.Location = new Point(96, 321);
             BT_Add.Name = "BT_Add";
-            BT_Add.Size = new Size(236, 23);
+            BT_Add.Size = new Size(236, 32);
             BT_Add.TabIndex = 13;
             BT_Add.Text = "Adicionar";
             BT_Add.UseVisualStyleBackColor = false;
@@ -389,6 +402,7 @@
             DGV_produto.Name = "DGV_produto";
             DGV_produto.Size = new Size(596, 555);
             DGV_produto.TabIndex = 2;
+            DGV_produto.CellContentClick += DGV_produto_CellContentClick;
             // 
             // CB_fornecedor
             // 
@@ -397,6 +411,7 @@
             CB_fornecedor.Name = "CB_fornecedor";
             CB_fornecedor.Size = new Size(236, 23);
             CB_fornecedor.TabIndex = 1;
+            CB_fornecedor.SelectedIndexChanged += CB_fornecedor_SelectedIndexChanged;
             // 
             // CB_categoria
             // 
@@ -499,5 +514,6 @@
         private Button button8;
         private ComboBox CB_delete;
         private Label label7;
+        private Button button9;
     }
 }

@@ -129,6 +129,25 @@ namespace SistemaLogin.DAO
 
 
 
+        public bool ProdutoExiste(string nome, string codigo)
+        {
+            using (var conn = DatabaseConnection.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM produto WHERE nome_produto = @nome OR codigo_produto = @codigo";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@nome", nome);
+                    cmd.Parameters.AddWithValue("@codigo", codigo);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
+
+
 
 
         public DataTable ListarProdutos()
