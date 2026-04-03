@@ -2,7 +2,9 @@
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using SistemaLogin.Models;
 using SistemaLogin.UI;
+using SistemaLogin.DAO;
 
 namespace SistemaLogin
 {
@@ -29,21 +31,74 @@ namespace SistemaLogin
             var btnLimpar = this.Controls.Find("btnLimpar", true).FirstOrDefault() as Button;
             var btnCancelar = this.Controls.Find("btnCancelar", true).FirstOrDefault() as Button;
 
-            if (btnSalvar != null)
+            if (btnSalvar != null) 
             {
+
                 btnSalvar.Click += (s, e) =>
                 {
-                    string PaisSelecionado = "Brasil";
-                    string estadoSelecionado = cmbEstado.SelectedItem.ToString();
+                    try
+                    {
+                        if (string.IsNullOrWhiteSpace(txtNome.Text))
+                        {
+                            MessageBox.Show("Informe a Razão Social do Fornecedor.");
+                            txtNome.Focus();
+                            return;
+                        }
+                        if (string.IsNullOrWhiteSpace(txtCnpj.Text))
+                        {
+                            MessageBox.Show("Informe o CNPJ do Fornecedor");
+                            txtCnpj.Focus();
+                            return;
+                        }
 
-                    MessageBox.Show(
-                        "UI tá ok.falta conexão com bd, mudar quando tiver.",
-                        "Info",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                    );
+                        var fornecedor = new Fornecedor
+                        {
+                            Nome_Fornecedor = txtNome.Text.Trim(),
+                            CNPJ_Fornecedor = txtCnpj.Text.Trim(),
+                            Email_Fornecedor = txtEmail.Text.Trim(),
+
+                        };
+
+                        var telefone = new TelefoneFornecedor
+                        {
+                            Telefone_Fornecedor = txtTelefone.Text.Trim(),
+                        };
+
+                        var endereco = new Endereco_Fornecedor
+                        {
+                            Pais_Fornecedor = "Brasil",
+                            Estado_Fornecedor = cmbEstado.Text.Trim(),
+                            Cidade_Fornecedor = txtCidade.Text.Trim(),
+                            Bairro_Fornecedor = txtBairro.Text.Trim(),
+                            Rua_Fornecedor = txtRua.Text.Trim(),
+                            Numero_Fornecedor = txtNumero.Text.Trim(),
+                            CEP_Fornecedor = txtCep.Text.Trim(),
+                            Complemento_Fornecedor = txtComplemento.Text.Trim(),
+                        };
+
+                        using (var conn = DatabaseConnection.GetConnection())
+                        {
+                            conn.Open();
+
+                            {
+                                var fornecedorDao = new FornecedorDAO();
+                                fornecedorDao.Adicionar(fornecedor, endereco, telefone);
+
+                                MessageBox.Show("Fornecedor cadastrado com sucesso!");
+                                LimparCampos();
+
+                            }
+
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao salvar fornecedor: {ex.Message})");
+                    }
                 };
-            }
+            };
+
 
             if (btnLimpar != null)
             {
