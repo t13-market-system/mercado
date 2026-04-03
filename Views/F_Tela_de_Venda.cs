@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SistemaLogin.DAO;
+using SistemaLogin.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,7 @@ namespace SistemaLogin
 {
     public partial class F_Tela_de_Venda : Form
     {
+        private List<int> idsProdutosSelecionados = new List<int>();
         public F_Tela_de_Venda()
         {
             InitializeComponent();
@@ -35,8 +38,48 @@ namespace SistemaLogin
 
         private void button1_Click(object sender, EventArgs e)
         {
-            decimal ID = Convert.ToDecimal(tb_produtos.Text);
-            lb_produtos.Items.Add(ID);
+            if (string.IsNullOrWhiteSpace(tb_produtos.Text))
+            {
+                MessageBox.Show("Digite um ID de produto!", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!int.TryParse(tb_produtos.Text, out int id))
+            {
+                MessageBox.Show("ID inválido! Digite apenas números.", "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                var dao = new ProdutoDAO();
+                DataTable tabela = dao.ListarProdutos();
+
+                // Filtra pelo ID dentro da DataTable já carregada
+                DataRow[] resultado = tabela.Select($"id_produto = {id}");
+
+                if (resultado.Length > 0)
+                {
+                    string nome = resultado[0]["nome_produto"].ToString();
+                    string preco = Convert.ToDecimal(resultado[0]["preco_produto"]).ToString("F2");
+
+                    string item = $"{id:D3} - {nome} - R$ {preco}";
+                    lb_produtos.Items.Add(item);
+                    tb_produtos.Clear();
+                    tb_produtos.Focus();
+                }
+                else
+                {
+                    MessageBox.Show($"Produto ID {id} não encontrado!", "Aviso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -79,5 +122,36 @@ namespace SistemaLogin
         {
 
         }
+
+        private void lb_produtos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_finalizar_Click(object sender, EventArgs e)
+        {
+                if (lb_produtos.Items.Count == 0)
+                {
+                    MessageBox.Show("Adicione ao menos um produto!", "Aviso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                try
+                {
+                    var dao = new VendaDAO();
+                    dao.FinalizarVenda(idsProdutosSelecionados);
+
+                    MessageBox.Show("Venda finalizada com sucesso!", "Sucesso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    lb_produtos.Items.Clear();
+                    idsProdutosSelecionados.Clear();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
-}
