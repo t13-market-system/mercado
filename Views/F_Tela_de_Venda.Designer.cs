@@ -49,6 +49,7 @@
             btn_cancelar = new Button();
             btn_remover_tudo = new Button();
             pictureBox3 = new PictureBox();
+            btn_finalizar = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -57,7 +58,7 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.SaddleBrown;
-            pictureBox1.Location = new Point(-2, 1);
+            pictureBox1.Location = new Point(-2, 0);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(802, 64);
             pictureBox1.TabIndex = 0;
@@ -78,7 +79,7 @@
             label1.BackColor = Color.SaddleBrown;
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(-3, 0);
+            label1.Location = new Point(-3, 1);
             label1.Name = "label1";
             label1.Size = new Size(593, 37);
             label1.TabIndex = 2;
@@ -213,6 +214,7 @@
             lb_produtos.Name = "lb_produtos";
             lb_produtos.Size = new Size(422, 289);
             lb_produtos.TabIndex = 14;
+            lb_produtos.SelectedIndexChanged += lb_produtos_SelectedIndexChanged;
             // 
             // btn_remover
             // 
@@ -261,11 +263,24 @@
             // 
             pictureBox3.BackColor = Color.SaddleBrown;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(685, -17);
+            pictureBox3.Location = new Point(685, -18);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(138, 76);
             pictureBox3.TabIndex = 19;
             pictureBox3.TabStop = false;
+            // 
+            // btn_finalizar
+            // 
+            btn_finalizar.BackColor = Color.Lime;
+            btn_finalizar.FlatStyle = FlatStyle.Flat;
+            btn_finalizar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_finalizar.Location = new Point(270, 66);
+            btn_finalizar.Name = "btn_finalizar";
+            btn_finalizar.Size = new Size(99, 23);
+            btn_finalizar.TabIndex = 20;
+            btn_finalizar.Text = "Finalizar";
+            btn_finalizar.UseVisualStyleBackColor = false;
+            btn_finalizar.Click += btn_finalizar_Click;
             // 
             // F_Tela_de_Venda
             // 
@@ -273,6 +288,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PeachPuff;
             ClientSize = new Size(800, 450);
+            Controls.Add(btn_finalizar);
             Controls.Add(pictureBox3);
             Controls.Add(btn_remover_tudo);
             Controls.Add(btn_cancelar);
@@ -325,5 +341,6 @@
         private Button btn_cancelar;
         private Button btn_remover_tudo;
         private PictureBox pictureBox3;
+        private Button btn_finalizar;
     }
 }
