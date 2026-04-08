@@ -11,85 +11,120 @@ namespace SistemaLogin.DAO
 {
     internal class VendaDAO
     {
-        //Create
 
-        public void Adicionar(Venda venda)
-        {
-            try
+            // 🔥 FINALIZAR VENDA (COM ITENS)
+            public void FinalizarVenda(List<int> idsProdutos)
             {
                 using (var conn = DatabaseConnection.GetConnection())
                 {
                     conn.Open();
-                    string query = "INSERT INTO venda (id_pedido, data_venda, id_forma_pagamento) VALUES (@id_pedido, @data_venda, @id_forma_pagamento)";
+                    var transaction = conn.BeginTransaction();
+
+                    try
+                    {
+                        int idVenda;
+
+                        // 1. Criar venda
+                        using (var cmdVenda = new MySqlCommand(
+                            "INSERT INTO venda (data_venda) VALUES (NOW()); SELECT LAST_INSERT_ID();",
+                            conn, transaction))
+                        {
+                            idVenda = Convert.ToInt32(cmdVenda.ExecuteScalar());
+                        }
+
+                        // 2. Inserir itens
+                        foreach (int idProduto in idsProdutos)
+                        {
+                            using (var cmdItem = new MySqlCommand(
+                                @"INSERT INTO itens_venda (id_venda, id_produto, preco)
+                          SELECT @idVenda, id_produto, preco_produto
+                          FROM produto
+                          WHERE id_produto = @idProduto",
+                                conn, transaction))
+                            {
+                                cmdItem.Parameters.AddWithValue("@idVenda", idVenda);
+                                cmdItem.Parameters.AddWithValue("@idProduto", idProduto);
+                                cmdItem.ExecuteNonQuery();
+                            }
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+
+            // 💰 FATURAMENTO
+            public decimal ObterFaturamentoHoje()
+            {
+                using (var conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    string query = @"
+            SELECT IFNULL(SUM(iv.preco), 0)
+            FROM itens_venda iv
+            INNER JOIN venda v ON v.id_venda = iv.id_venda
+            WHERE DATE(v.data_venda) = CURDATE()";
+
                     using (var cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@id_venda", venda.Id_venda);
-                        cmd.Parameters.AddWithValue("@id_pedido", venda.Id_pedido);
-                        cmd.Parameters.AddWithValue("@data_venda", venda.Data_venda);
-                        cmd.Parameters.AddWithValue("@id_forma_pagamento", venda.Id_forma_pagamento);
-                        cmd.ExecuteNonQuery();
-
+                        return Convert.ToDecimal(cmd.ExecuteScalar());
                     }
                 }
             }
-            catch (MySqlException err)
+
+            // 📦 QUANTIDADE
+            public int ObterQuantidadeItensHoje()
             {
-                if (err.Number == 1062) // Erro de UNIQUE (Duplicidade)
+                using (var conn = DatabaseConnection.GetConnection())
                 {
-                    throw new Exception("Esta venda já está cadastrada no sistema.");
-                }
+                    conn.Open();
 
+                    string query = @"
+            SELECT COUNT(*)
+            FROM itens_venda iv
+            INNER JOIN venda v ON v.id_venda = iv.id_venda
+            WHERE DATE(v.data_venda) = CURDATE()";
 
-                // Lança uma mensagem mascarada e segura para a interface gráfica
-                throw new Exception("Ocorreu um erro interno ao tentar salvar a venda.");
-
-            }
-
-        } // Fim do método adicionar
-
-
-        // Read
-        // este método fará uma consulta no banco de dados e retornará todas as vendas cadastradas
-        public DataTable ObterTodas()
-        {
-            DataTable dt = new DataTable();
-            using (var conn = DatabaseConnection.GetConnection())
-            {
-                conn.Open();
-                string query = "SELECT id_venda AS 'ID', id_pedido AS 'Pedido', data_venda AS 'Data da Venda', id_forma_pagamento AS 'Forma de Pagamento' FROM venda";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    using (var da = new MySqlDataAdapter(cmd))
+                    using (var cmd = new MySqlCommand(query, conn))
                     {
-                        da.Fill(dt);
+                        return Convert.ToInt32(cmd.ExecuteScalar());
                     }
                 }
             }
-            return dt;
-        } // Fim do Read
 
-        // UPDATE
-        public void Atualizar(Venda venda)
-        {
-            using (var conn = DatabaseConnection.GetConnection())
+            // 🏆 PRODUTO MAIS VENDIDO
+            public string ObterProdutoMaisVendidoHoje()
             {
-                conn.Open();
-                string query = "UPDATE venda SET Id_pedido = @id_pedido, Data_venda = @data_venda, Id_forma_pagamento = @id_forma_pagamento WHERE Id_venda = @id_venda";
-                using (var cmd = new MySqlCommand(query, conn))
+                using (var conn = DatabaseConnection.GetConnection())
                 {
-                    cmd.Parameters.AddWithValue("@id_venda", venda.Id_venda);
-                    cmd.Parameters.AddWithValue("@id_pedido", venda.Id_pedido);
-                    cmd.Parameters.AddWithValue("@data_venda", venda.Data_venda);
-                    cmd.Parameters.AddWithValue("@id_forma_pagamento", venda.Id_forma_pagamento);
-                    cmd.ExecuteNonQuery();
+                    conn.Open();
+
+                    string query = @"
+            SELECT p.nome_produto
+            FROM itens_venda iv
+            INNER JOIN produto p ON p.id_produto = iv.id_produto
+            INNER JOIN venda v ON v.id_venda = iv.id_venda
+            WHERE DATE(v.data_venda) = CURDATE()
+            GROUP BY p.nome_produto
+            ORDER BY COUNT(*) DESC
+            LIMIT 1";
+
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        var result = cmd.ExecuteScalar();
+                        return result?.ToString() ?? "Nenhum";
+                    }
                 }
             }
-        } // Fim do Update
 
-        //Delete
-        public void Excluir(int id)
-        {
-            using (var conn = DatabaseConnection.GetConnection())
+            // 📊 CATEGORIA MAIS VENDIDA
+            public string ObterCategoriaMaisVendidaHoje()
             {
                 conn.Open();
                 string query = "DELETE FROM venda WHERE Id_venda = @idvenda";
@@ -257,4 +292,3 @@ namespace SistemaLogin.DAO
             }
         }
     }
-}

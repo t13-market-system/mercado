@@ -140,7 +140,7 @@ namespace SistemaLogin
                 try
                 {
                     var dao = new VendaDAO();
-                    dao.FinalizarVenda(idsProdutosSelecionados);
+                    //dao.FinalizarVenda(idsProdutosSelecionados);
 
                     MessageBox.Show("Venda finalizada com sucesso!", "Sucesso",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);

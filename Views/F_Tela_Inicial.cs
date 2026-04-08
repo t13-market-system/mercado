@@ -1,5 +1,6 @@
 ﻿using SistemaLogin.DAO;
 using SistemaLogin.Models;
+using SistemaLogin.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -456,6 +457,12 @@ namespace SistemaLogin
         private void CB_fornecedor_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            F_Relatorio_Vendas f_Relatorio_Vendas = new F_Relatorio_Vendas();
+            f_Relatorio_Vendas.ShowDialog();
         }
     } // Fim da classe
 }

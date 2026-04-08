@@ -19,39 +19,31 @@ namespace SistemaLogin.Views
             InitializeComponent();
         }
 
-        private void F_Relatório_Vendas_Load(object sender, EventArgs e)
+        private void F_Relatorio_Vendas_Load(object sender, EventArgs e)
         {
-                AtualizarFaturamento();
-            }
+            AtualizarFaturamento();
+        }
 
         private void AtualizarFaturamento()
         {
             try
             {
                 var dao = new VendaDAO();
-                decimal faturamento = dao.ObterFaturamentoHoje(new Venda());
+
+                decimal faturamento = dao.ObterFaturamentoHoje();
                 int itens = dao.ObterQuantidadeItensHoje();
-                string maisVendidos = dao.ObterProdutosMaisVendidosHoje();
-                string maisCategorias = dao.ObterCategoriasMaisVendidasHoje();
+                string maisVendidos = dao.ObterProdutoMaisVendidoHoje();
+                string maisCategorias = dao.ObterCategoriaMaisVendidaHoje();
 
                 label7.Text = $"R$ {faturamento:F2}";
-                label9.Text = $" {itens}";
-                label10.Text = $"{maisVendidos}";
-                label11.Text = $"{maisCategorias}";
+                label9.Text = $"{itens}";
+                label10.Text = maisVendidos;
+                label11.Text = maisCategorias;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message);
             }
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
