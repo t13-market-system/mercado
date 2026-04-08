@@ -70,7 +70,7 @@ namespace SistemaLogin
                             Estado_Fornecedor = cmbEstado.Text.Trim(),
                             Cidade_Fornecedor = txtCidade.Text.Trim(),
                             Bairro_Fornecedor = txtBairro.Text.Trim(),
-                            Rua_Fornecedor = txtRua.Text.Trim(),
+                            Rua_Fornecedor = textBox7.Text.Trim(),
                             Numero_Fornecedor = txtNumero.Text.Trim(),
                             CEP_Fornecedor = txtCep.Text.Trim(),
                             Complemento_Fornecedor = txtComplemento.Text.Trim(),
