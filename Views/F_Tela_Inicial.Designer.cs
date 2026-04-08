@@ -63,6 +63,7 @@
             panel2 = new Panel();
             label1 = new Label();
             pictureBox1 = new PictureBox();
+            button10 = new Button();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             panel1.SuspendLayout();
@@ -111,6 +112,7 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ActiveBorder;
+            panel1.Controls.Add(button10);
             panel1.Controls.Add(button7);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(button2);
@@ -451,6 +453,16 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
+            // button10
+            // 
+            button10.Location = new Point(1, 164);
+            button10.Name = "button10";
+            button10.Size = new Size(111, 39);
+            button10.TabIndex = 4;
+            button10.Text = "Relatorios de vendas";
+            button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click;
+            // 
             // F_Tela_Inicial
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -515,5 +527,6 @@
         private ComboBox CB_delete;
         private Label label7;
         private Button button9;
+        private Button button10;
     }
 }
