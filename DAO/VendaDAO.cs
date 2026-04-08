@@ -258,17 +258,3 @@ namespace SistemaLogin.DAO
         }
     }
 }
-
-
-                    {
-                        cmd.Parameters.AddWithValue("@id_venda", id);
-                        cmd.Parameters.AddWithValue("@id_pedido", id);
-                        cmd.Parameters.AddWithValue("@data_venda", id);
-                        cmd.Parameters.AddWithValue("@id_forma_pagamento", id);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            } // Fim do Delete
-        }
-    }
-}
