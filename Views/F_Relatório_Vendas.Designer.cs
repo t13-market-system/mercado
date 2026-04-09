@@ -48,6 +48,7 @@
             label9 = new Label();
             label10 = new Label();
             label11 = new Label();
+            DGV_relatorio = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -58,6 +59,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DGV_relatorio).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -146,7 +148,7 @@
             pictureBox8.BackColor = Color.White;
             pictureBox8.Location = new Point(12, 235);
             pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(839, 234);
+            pictureBox8.Size = new Size(382, 234);
             pictureBox8.TabIndex = 13;
             pictureBox8.TabStop = false;
             // 
@@ -179,7 +181,7 @@
             pictureBox9.BackColor = Color.White;
             pictureBox9.Location = new Point(15, 136);
             pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(836, 84);
+            pictureBox9.Size = new Size(379, 84);
             pictureBox9.TabIndex = 16;
             pictureBox9.TabStop = false;
             // 
@@ -189,7 +191,7 @@
             pictureBox10.Image = (Image)resources.GetObject("pictureBox10.Image");
             pictureBox10.Location = new Point(12, 252);
             pictureBox10.Name = "pictureBox10";
-            pictureBox10.Size = new Size(839, 20);
+            pictureBox10.Size = new Size(382, 20);
             pictureBox10.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox10.TabIndex = 17;
             pictureBox10.TabStop = false;
@@ -200,7 +202,7 @@
             pictureBox11.Image = (Image)resources.GetObject("pictureBox11.Image");
             pictureBox11.Location = new Point(15, 152);
             pictureBox11.Name = "pictureBox11";
-            pictureBox11.Size = new Size(836, 20);
+            pictureBox11.Size = new Size(379, 20);
             pictureBox11.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox11.TabIndex = 18;
             pictureBox11.TabStop = false;
@@ -232,7 +234,6 @@
             label9.Size = new Size(38, 15);
             label9.TabIndex = 22;
             label9.Text = "label9";
-            
             // 
             // label10
             // 
@@ -252,12 +253,21 @@
             label11.TabIndex = 24;
             label11.Text = "label11";
             // 
+            // DGV_relatorio
+            // 
+            DGV_relatorio.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DGV_relatorio.Location = new Point(400, 136);
+            DGV_relatorio.Name = "DGV_relatorio";
+            DGV_relatorio.Size = new Size(451, 331);
+            DGV_relatorio.TabIndex = 25;
+            // 
             // F_Relatorio_Vendas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PeachPuff;
             ClientSize = new Size(859, 479);
+            Controls.Add(DGV_relatorio);
             Controls.Add(label11);
             Controls.Add(label10);
             Controls.Add(label9);
@@ -281,7 +291,7 @@
             Name = "F_Relatorio_Vendas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "F_Relatório_Vendas";
-            //Load += F_Relatorio_Vendas_Load_1;
+            Load += F_Relatorio_Vendas_Load_1;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -292,6 +302,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DGV_relatorio).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -317,5 +328,6 @@
         private Label label9;
         private Label label10;
         private Label label11;
+        private DataGridView DGV_relatorio;
     }
 }

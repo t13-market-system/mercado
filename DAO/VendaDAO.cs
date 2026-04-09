@@ -56,6 +56,55 @@ namespace SistemaLogin.DAO
 
         }
 
+
+
+
+
+
+
+        public DataTable ObterItensVendidosHoje()
+        {
+            using (var conn = DatabaseConnection.GetConnection())
+            {
+                conn.Open();
+                string query = @"
+            SELECT 
+                p.nome_produto        AS Produto,
+                c.nome_categoria      AS Categoria,
+                SUM(pi.quantidade_item)                        AS Quantidade,
+                pi.preco_unitario                              AS 'Preço Unitário',
+                SUM(pi.quantidade_item * pi.preco_unitario)    AS Total
+            FROM pedido_item pi
+            INNER JOIN venda v    ON v.id_pedido   = pi.id_pedido
+            INNER JOIN produto p  ON p.id_produto  = pi.id_produto
+            INNER JOIN categoria c ON c.id_categoria = p.id_categoria
+            WHERE DATE(v.data_venda) = CURDATE()
+            GROUP BY p.id_produto, p.nome_produto, c.nome_categoria, pi.preco_unitario
+            ORDER BY Total DESC";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                using (var adapter = new MySqlDataAdapter(cmd))
+                {
+                    var dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public int ObterQuantidadeItensHoje()
 
         {
