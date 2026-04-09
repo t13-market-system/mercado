@@ -20,16 +20,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_Cad_Fornecedor));
             pnlFooter = new Panel();
             pnlBody = new Panel();
-            btnCancelar = new Button();
-            btnLimpar = new Button();
-            btnSalvar = new Button();
-            pnlToolbar = new Panel();
-            lblSubtitulo = new Label();
-            lblTitulo = new Label();
-            pnlHeader = new Panel();
             tabGuias = new TabControl();
             tabInfo = new TabPage();
-            tabGerenciar = new TabPage();
+            txtTelefone = new MaskedTextBox();
+            txtCnpj = new MaskedTextBox();
             txtPais = new TextBox();
             cmbEstado = new ComboBox();
             pictureBox2 = new PictureBox();
@@ -38,9 +32,7 @@
             label2 = new Label();
             txtNome = new TextBox();
             label3 = new Label();
-            txtCnpj = new TextBox();
             label4 = new Label();
-            txtTelefone = new TextBox();
             label5 = new Label();
             txtEmail = new TextBox();
             label6 = new Label();
@@ -59,15 +51,23 @@
             txtCep = new TextBox();
             label14 = new Label();
             txtComplemento = new TextBox();
-            dvgFornecedor = new DataGridView();
+            tabGerenciar = new TabPage();
+            dgvFornecedor = new DataGridView();
+            btnDeletar = new Button();
+            btnLimpar = new Button();
+            btnSalvar = new Button();
+            pnlToolbar = new Panel();
+            lblSubtitulo = new Label();
+            lblTitulo = new Label();
+            pnlHeader = new Panel();
             pnlBody.SuspendLayout();
-            pnlToolbar.SuspendLayout();
-            pnlHeader.SuspendLayout();
             tabGuias.SuspendLayout();
             tabInfo.SuspendLayout();
-            tabGerenciar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dvgFornecedor).BeginInit();
+            tabGerenciar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvFornecedor).BeginInit();
+            pnlToolbar.SuspendLayout();
+            pnlHeader.SuspendLayout();
             SuspendLayout();
             // 
             // pnlFooter
@@ -92,95 +92,6 @@
             pnlBody.Size = new Size(1024, 466);
             pnlBody.TabIndex = 0;
             // 
-            // btnCancelar
-            // 
-            btnCancelar.BackColor = Color.FromArgb(244, 67, 54);
-            btnCancelar.Cursor = Cursors.Hand;
-            btnCancelar.FlatStyle = FlatStyle.Flat;
-            btnCancelar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(240, 10);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(100, 35);
-            btnCancelar.TabIndex = 2;
-            btnCancelar.Text = "✕ Deletar";
-            btnCancelar.UseVisualStyleBackColor = false;
-            // 
-            // btnLimpar
-            // 
-            btnLimpar.BackColor = Color.FromArgb(255, 152, 0);
-            btnLimpar.Cursor = Cursors.Hand;
-            btnLimpar.FlatStyle = FlatStyle.Flat;
-            btnLimpar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnLimpar.ForeColor = Color.White;
-            btnLimpar.Location = new Point(128, 10);
-            btnLimpar.Name = "btnLimpar";
-            btnLimpar.Size = new Size(100, 35);
-            btnLimpar.TabIndex = 1;
-            btnLimpar.Text = "↻ Limpar";
-            btnLimpar.UseVisualStyleBackColor = false;
-            // 
-            // btnSalvar
-            // 
-            btnSalvar.BackColor = Color.FromArgb(76, 175, 80);
-            btnSalvar.Cursor = Cursors.Hand;
-            btnSalvar.FlatStyle = FlatStyle.Flat;
-            btnSalvar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnSalvar.ForeColor = Color.White;
-            btnSalvar.Location = new Point(16, 10);
-            btnSalvar.Name = "btnSalvar";
-            btnSalvar.Size = new Size(100, 35);
-            btnSalvar.TabIndex = 0;
-            btnSalvar.Text = "✓ Salvar";
-            btnSalvar.UseVisualStyleBackColor = false;
-            // 
-            // pnlToolbar
-            // 
-            pnlToolbar.BackColor = Color.FromArgb(215, 185, 145);
-            pnlToolbar.Controls.Add(btnSalvar);
-            pnlToolbar.Controls.Add(btnLimpar);
-            pnlToolbar.Controls.Add(btnCancelar);
-            pnlToolbar.Dock = DockStyle.Top;
-            pnlToolbar.Location = new Point(0, 90);
-            pnlToolbar.Name = "pnlToolbar";
-            pnlToolbar.Padding = new Padding(16, 10, 16, 10);
-            pnlToolbar.Size = new Size(1024, 55);
-            pnlToolbar.TabIndex = 2;
-            // 
-            // lblSubtitulo
-            // 
-            lblSubtitulo.AutoSize = true;
-            lblSubtitulo.Font = new Font("Segoe UI", 10F);
-            lblSubtitulo.ForeColor = Color.FromArgb(215, 185, 145);
-            lblSubtitulo.Location = new Point(23, 50);
-            lblSubtitulo.Name = "lblSubtitulo";
-            lblSubtitulo.Size = new Size(288, 19);
-            lblSubtitulo.TabIndex = 1;
-            lblSubtitulo.Text = "Preencha as informações do novo fornecedor:";
-            // 
-            // lblTitulo
-            // 
-            lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            lblTitulo.ForeColor = Color.White;
-            lblTitulo.Location = new Point(20, 8);
-            lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(497, 30);
-            lblTitulo.TabIndex = 0;
-            lblTitulo.Text = "MARKET 100 STRESS - Cadastro de Fornecedor";
-            // 
-            // pnlHeader
-            // 
-            pnlHeader.BackColor = Color.FromArgb(139, 101, 51);
-            pnlHeader.Controls.Add(lblTitulo);
-            pnlHeader.Controls.Add(lblSubtitulo);
-            pnlHeader.Dock = DockStyle.Top;
-            pnlHeader.Location = new Point(0, 0);
-            pnlHeader.Name = "pnlHeader";
-            pnlHeader.Padding = new Padding(20, 0, 20, 0);
-            pnlHeader.Size = new Size(1024, 90);
-            pnlHeader.TabIndex = 3;
-            // 
             // tabGuias
             // 
             tabGuias.Controls.Add(tabInfo);
@@ -195,6 +106,8 @@
             // tabInfo
             // 
             tabInfo.BackColor = Color.FromArgb(245, 235, 220);
+            tabInfo.Controls.Add(txtTelefone);
+            tabInfo.Controls.Add(txtCnpj);
             tabInfo.Controls.Add(txtPais);
             tabInfo.Controls.Add(cmbEstado);
             tabInfo.Controls.Add(pictureBox2);
@@ -203,9 +116,7 @@
             tabInfo.Controls.Add(label2);
             tabInfo.Controls.Add(txtNome);
             tabInfo.Controls.Add(label3);
-            tabInfo.Controls.Add(txtCnpj);
             tabInfo.Controls.Add(label4);
-            tabInfo.Controls.Add(txtTelefone);
             tabInfo.Controls.Add(label5);
             tabInfo.Controls.Add(txtEmail);
             tabInfo.Controls.Add(label6);
@@ -231,16 +142,22 @@
             tabInfo.TabIndex = 0;
             tabInfo.Text = "Informações";
             // 
-            // tabGerenciar
+            // txtTelefone
             // 
-            tabGerenciar.Controls.Add(dvgFornecedor);
-            tabGerenciar.Location = new Point(4, 24);
-            tabGerenciar.Name = "tabGerenciar";
-            tabGerenciar.Padding = new Padding(3);
-            tabGerenciar.Size = new Size(976, 398);
-            tabGerenciar.TabIndex = 1;
-            tabGerenciar.Text = "Gerenciar";
-            tabGerenciar.UseVisualStyleBackColor = true;
+            txtTelefone.Location = new Point(23, 123);
+            txtTelefone.Mask = "(99) 00000-0000";
+            txtTelefone.Name = "txtTelefone";
+            txtTelefone.Size = new Size(250, 23);
+            txtTelefone.TabIndex = 62;
+            // 
+            // txtCnpj
+            // 
+            txtCnpj.Culture = new System.Globalization.CultureInfo("en-001");
+            txtCnpj.Location = new Point(502, 64);
+            txtCnpj.Mask = "00.000.000/0000-00";
+            txtCnpj.Name = "txtCnpj";
+            txtCnpj.Size = new Size(171, 23);
+            txtCnpj.TabIndex = 61;
             // 
             // txtPais
             // 
@@ -323,17 +240,6 @@
             label3.TabIndex = 36;
             label3.Text = "CNPJ";
             // 
-            // txtCnpj
-            // 
-            txtCnpj.BackColor = Color.White;
-            txtCnpj.BorderStyle = BorderStyle.FixedSingle;
-            txtCnpj.Font = new Font("Segoe UI", 10F);
-            txtCnpj.ForeColor = Color.Black;
-            txtCnpj.Location = new Point(503, 62);
-            txtCnpj.Name = "txtCnpj";
-            txtCnpj.Size = new Size(170, 25);
-            txtCnpj.TabIndex = 37;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -344,17 +250,6 @@
             label4.Size = new Size(51, 15);
             label4.TabIndex = 38;
             label4.Text = "Telefone";
-            // 
-            // txtTelefone
-            // 
-            txtTelefone.BackColor = Color.White;
-            txtTelefone.BorderStyle = BorderStyle.FixedSingle;
-            txtTelefone.Font = new Font("Segoe UI", 10F);
-            txtTelefone.ForeColor = Color.Black;
-            txtTelefone.Location = new Point(23, 122);
-            txtTelefone.Name = "txtTelefone";
-            txtTelefone.Size = new Size(250, 25);
-            txtTelefone.TabIndex = 39;
             // 
             // label5
             // 
@@ -551,14 +446,115 @@
             txtComplemento.Size = new Size(220, 25);
             txtComplemento.TabIndex = 57;
             // 
-            // dvgFornecedor
+            // tabGerenciar
             // 
-            dvgFornecedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dvgFornecedor.Dock = DockStyle.Fill;
-            dvgFornecedor.Location = new Point(3, 3);
-            dvgFornecedor.Name = "dvgFornecedor";
-            dvgFornecedor.Size = new Size(970, 392);
-            dvgFornecedor.TabIndex = 0;
+            tabGerenciar.Controls.Add(dgvFornecedor);
+            tabGerenciar.Location = new Point(4, 24);
+            tabGerenciar.Name = "tabGerenciar";
+            tabGerenciar.Padding = new Padding(3);
+            tabGerenciar.Size = new Size(976, 398);
+            tabGerenciar.TabIndex = 1;
+            tabGerenciar.Text = "Gerenciar";
+            tabGerenciar.UseVisualStyleBackColor = true;
+            // 
+            // dgvFornecedor
+            // 
+            dgvFornecedor.BackgroundColor = Color.FromArgb(245, 235, 220);
+            dgvFornecedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvFornecedor.Dock = DockStyle.Fill;
+            dgvFornecedor.Location = new Point(3, 3);
+            dgvFornecedor.Name = "dgvFornecedor";
+            dgvFornecedor.Size = new Size(970, 392);
+            dgvFornecedor.TabIndex = 0;
+            // 
+            // btnDeletar
+            // 
+            btnDeletar.BackColor = Color.FromArgb(244, 67, 54);
+            btnDeletar.Cursor = Cursors.Hand;
+            btnDeletar.FlatStyle = FlatStyle.Flat;
+            btnDeletar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnDeletar.ForeColor = Color.White;
+            btnDeletar.Location = new Point(240, 10);
+            btnDeletar.Name = "btnDeletar";
+            btnDeletar.Size = new Size(100, 35);
+            btnDeletar.TabIndex = 2;
+            btnDeletar.Text = "✕ Deletar";
+            btnDeletar.UseVisualStyleBackColor = false;
+            // 
+            // btnLimpar
+            // 
+            btnLimpar.BackColor = Color.FromArgb(255, 152, 0);
+            btnLimpar.Cursor = Cursors.Hand;
+            btnLimpar.FlatStyle = FlatStyle.Flat;
+            btnLimpar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnLimpar.ForeColor = Color.White;
+            btnLimpar.Location = new Point(128, 10);
+            btnLimpar.Name = "btnLimpar";
+            btnLimpar.Size = new Size(100, 35);
+            btnLimpar.TabIndex = 1;
+            btnLimpar.Text = "↻ Limpar";
+            btnLimpar.UseVisualStyleBackColor = false;
+            // 
+            // btnSalvar
+            // 
+            btnSalvar.BackColor = Color.FromArgb(76, 175, 80);
+            btnSalvar.Cursor = Cursors.Hand;
+            btnSalvar.FlatStyle = FlatStyle.Flat;
+            btnSalvar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnSalvar.ForeColor = Color.White;
+            btnSalvar.Location = new Point(16, 10);
+            btnSalvar.Name = "btnSalvar";
+            btnSalvar.Size = new Size(100, 35);
+            btnSalvar.TabIndex = 0;
+            btnSalvar.Text = "✓ Salvar";
+            btnSalvar.UseVisualStyleBackColor = false;
+            // 
+            // pnlToolbar
+            // 
+            pnlToolbar.BackColor = Color.FromArgb(215, 185, 145);
+            pnlToolbar.Controls.Add(btnSalvar);
+            pnlToolbar.Controls.Add(btnLimpar);
+            pnlToolbar.Controls.Add(btnDeletar);
+            pnlToolbar.Dock = DockStyle.Top;
+            pnlToolbar.Location = new Point(0, 90);
+            pnlToolbar.Name = "pnlToolbar";
+            pnlToolbar.Padding = new Padding(16, 10, 16, 10);
+            pnlToolbar.Size = new Size(1024, 55);
+            pnlToolbar.TabIndex = 2;
+            // 
+            // lblSubtitulo
+            // 
+            lblSubtitulo.AutoSize = true;
+            lblSubtitulo.Font = new Font("Segoe UI", 10F);
+            lblSubtitulo.ForeColor = Color.FromArgb(215, 185, 145);
+            lblSubtitulo.Location = new Point(23, 50);
+            lblSubtitulo.Name = "lblSubtitulo";
+            lblSubtitulo.Size = new Size(288, 19);
+            lblSubtitulo.TabIndex = 1;
+            lblSubtitulo.Text = "Preencha as informações do novo fornecedor:";
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.AutoSize = true;
+            lblTitulo.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTitulo.ForeColor = Color.White;
+            lblTitulo.Location = new Point(20, 8);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(497, 30);
+            lblTitulo.TabIndex = 0;
+            lblTitulo.Text = "MARKET 100 STRESS - Cadastro de Fornecedor";
+            // 
+            // pnlHeader
+            // 
+            pnlHeader.BackColor = Color.FromArgb(139, 101, 51);
+            pnlHeader.Controls.Add(lblTitulo);
+            pnlHeader.Controls.Add(lblSubtitulo);
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Location = new Point(0, 0);
+            pnlHeader.Name = "pnlHeader";
+            pnlHeader.Padding = new Padding(20, 0, 20, 0);
+            pnlHeader.Size = new Size(1024, 90);
+            pnlHeader.TabIndex = 3;
             // 
             // F_Cad_Fornecedor
             // 
@@ -576,22 +572,22 @@
             StartPosition = FormStartPosition.CenterParent;
             Text = "Cadastro de Fornecedor - Market 100 Stress";
             pnlBody.ResumeLayout(false);
-            pnlToolbar.ResumeLayout(false);
-            pnlHeader.ResumeLayout(false);
-            pnlHeader.PerformLayout();
             tabGuias.ResumeLayout(false);
             tabInfo.ResumeLayout(false);
             tabInfo.PerformLayout();
-            tabGerenciar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dvgFornecedor).EndInit();
+            tabGerenciar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvFornecedor).EndInit();
+            pnlToolbar.ResumeLayout(false);
+            pnlHeader.ResumeLayout(false);
+            pnlHeader.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
         private Panel pnlFooter;
         private Panel pnlBody;
-        private Button btnCancelar;
+        private Button btnDeletar;
         private Button btnLimpar;
         private Button btnSalvar;
         private Panel pnlToolbar;
@@ -608,9 +604,7 @@
         private Label label2;
         private TextBox txtNome;
         private Label label3;
-        private TextBox txtCnpj;
         private Label label4;
-        private TextBox txtTelefone;
         private Label label5;
         private TextBox txtEmail;
         private Label label6;
@@ -630,6 +624,8 @@
         private Label label14;
         private TextBox txtComplemento;
         private TabPage tabGerenciar;
-        private DataGridView dvgFornecedor;
+        private DataGridView dgvFornecedor;
+        private MaskedTextBox txtTelefone;
+        private MaskedTextBox txtCnpj;
     }
 }
