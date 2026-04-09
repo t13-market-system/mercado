@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿
+using MySqlConnector;
 using SistemaLogin.Models;
 using System;
 using System.Collections.Generic;
@@ -11,140 +12,79 @@ namespace SistemaLogin.DAO
 {
     internal class VendaDAO
     {
-
-        // 🔥 FINALIZAR VENDA (COM ITENS)
-        public void FinalizarVenda(List<int> idsProdutos)
-        {
-            using (var conn = DatabaseConnection.GetConnection())
-            {
-                conn.Open();
-                var transaction = conn.BeginTransaction();
-
-                try
-                {
-                    int idVenda;
-
-                    // 1. Criar venda
-                    using (var cmdVenda = new MySqlCommand(
-                        "INSERT INTO venda (data_venda) VALUES (NOW()); SELECT LAST_INSERT_ID();",
-                        conn, transaction))
-                    {
-                        idVenda = Convert.ToInt32(cmdVenda.ExecuteScalar());
-                    }
-
-                    // 2. Inserir itens
-                    foreach (int idProduto in idsProdutos)
-                    {
-                        using (var cmdItem = new MySqlCommand(
-                            @"INSERT INTO itens_venda (id_venda, id_produto, preco)
-                          SELECT @idVenda, id_produto, preco_produto
-                          FROM produto
-                          WHERE id_produto = @idProduto",
-                            conn, transaction))
-                        {
-                            cmdItem.Parameters.AddWithValue("@idVenda", idVenda);
-                            cmdItem.Parameters.AddWithValue("@idProduto", idProduto);
-                            cmdItem.ExecuteNonQuery();
-                        }
-                    }
-
-                    transaction.Commit();
-                }
-                catch
-                {
-                    transaction.Rollback();
-                    throw;
-                }
-            }
-        }
-
-        // 💰 FATURAMENTO
         public decimal ObterFaturamentoHoje()
         {
             using (var conn = DatabaseConnection.GetConnection())
             {
                 conn.Open();
-
-                string query = @"
-            SELECT IFNULL(SUM(iv.preco), 0)
-            FROM itens_venda iv
-            INNER JOIN venda v ON v.id_venda = iv.id_venda
-            WHERE DATE(v.data_venda) = CURDATE()";
-
+                string query = @"SELECT IFNULL(SUM(pi.quantidade_item * pi.preco_unitario), 0)
+                         FROM pedido_item pi
+                         INNER JOIN venda v ON v.id_pedido = pi.id_pedido
+                         WHERE DATE(v.data_venda) = CURDATE()";
                 using (var cmd = new MySqlCommand(query, conn))
                 {
-                    return Convert.ToDecimal(cmd.ExecuteScalar());
+                    var result = cmd.ExecuteScalar();
+                    return result == null || result == DBNull.Value ? 0 : Convert.ToDecimal(result);
                 }
             }
         }
 
-        // 📦 QUANTIDADE
         public int ObterQuantidadeItensHoje()
         {
             using (var conn = DatabaseConnection.GetConnection())
             {
                 conn.Open();
-
-                string query = @"
-            SELECT COUNT(*)
-            FROM itens_venda iv
-            INNER JOIN venda v ON v.id_venda = iv.id_venda
-            WHERE DATE(v.data_venda) = CURDATE()";
-
+                string query = @"SELECT IFNULL(SUM(pi.quantidade_item), 0)
+                FROM pedido_item pi
+                INNER JOIN venda v ON v.id_pedido = pi.id_pedido
+                WHERE DATE(v.data_venda) = CURDATE()";
                 using (var cmd = new MySqlCommand(query, conn))
                 {
-                    return Convert.ToInt32(cmd.ExecuteScalar());
+                    var result = cmd.ExecuteScalar();
+                    return result == null || result == DBNull.Value ? 0 : Convert.ToInt32(result);
                 }
             }
         }
 
-        // 🏆 PRODUTO MAIS VENDIDO
         public string ObterProdutoMaisVendidoHoje()
         {
             using (var conn = DatabaseConnection.GetConnection())
             {
                 conn.Open();
-
-                string query = @"
-            SELECT p.nome_produto
-            FROM itens_venda iv
-            INNER JOIN produto p ON p.id_produto = iv.id_produto
-            INNER JOIN venda v ON v.id_venda = iv.id_venda
-            WHERE DATE(v.data_venda) = CURDATE()
-            GROUP BY p.nome_produto
-            ORDER BY COUNT(*) DESC
-            LIMIT 1";
-
+                string query = @"SELECT p.nome_produto
+                FROM pedido_item pi
+                INNER JOIN venda v ON v.id_pedido = pi.id_pedido
+                INNER JOIN produto p ON p.id_produto = pi.id_produto
+                WHERE DATE(v.data_venda) = CURDATE()
+                GROUP BY p.id_produto, p.nome_produto
+                ORDER BY SUM(pi.quantidade_item) DESC
+                LIMIT 1";
                 using (var cmd = new MySqlCommand(query, conn))
                 {
                     var result = cmd.ExecuteScalar();
-                    return result?.ToString() ?? "Nenhum";
+                    return result == null || result == DBNull.Value ? "Nenhum" : result.ToString();
                 }
             }
         }
 
-        // 📊 CATEGORIA MAIS VENDIDA
         public string ObterCategoriaMaisVendidaHoje()
         {
             using (var conn = DatabaseConnection.GetConnection())
             {
                 conn.Open();
-
-                string query = @"
-            SELECT c.nome_categoria
-            FROM itens_venda iv
-            INNER JOIN produto p ON p.id_produto = iv.id_produto
-            INNER JOIN categoria c ON c.id_categoria = p.id_categoria
-            INNER JOIN venda v ON v.id_venda = iv.id_venda
-            WHERE DATE(v.data_venda) = CURDATE()
-            GROUP BY c.nome_categoria
-            ORDER BY COUNT(*) DESC
-            LIMIT 1";
-
+                string query = @"SELECT c.nome_categoria
+                FROM pedido_item pi
+                INNER JOIN venda v ON v.id_pedido = pi.id_pedido
+                INNER JOIN produto p ON p.id_produto = pi.id_produto
+                INNER JOIN categoria c ON c.id_categoria = p.id_categoria
+                WHERE DATE(v.data_venda) = CURDATE()
+                GROUP BY c.id_categoria, c.nome_categoria
+                ORDER BY SUM(pi.quantidade_item) DESC
+                LIMIT 1";
                 using (var cmd = new MySqlCommand(query, conn))
                 {
                     var result = cmd.ExecuteScalar();
-                    return result?.ToString() ?? "Nenhuma";
+                    return result == null || result == DBNull.Value ? "Nenhuma" : result.ToString();
                 }
             }
         }

@@ -1,13 +1,6 @@
 ﻿using SistemaLogin.DAO;
 using SistemaLogin.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistemaLogin.Views
@@ -17,6 +10,9 @@ namespace SistemaLogin.Views
         public F_Relatorio_Vendas()
         {
             InitializeComponent();
+
+            // Garante que o evento Load será chamado
+            this.Load += F_Relatorio_Vendas_Load;
         }
 
         private void F_Relatorio_Vendas_Load(object sender, EventArgs e)
@@ -26,7 +22,6 @@ namespace SistemaLogin.Views
 
         private void AtualizarFaturamento()
         {
-            int teste = 0;
             try
             {
                 var dao = new VendaDAO();
@@ -36,14 +31,15 @@ namespace SistemaLogin.Views
                 string maisVendidos = dao.ObterProdutoMaisVendidoHoje();
                 string maisCategorias = dao.ObterCategoriaMaisVendidaHoje();
 
-                label7.Text = $"R$ {faturamento:F2}";
-                label9.Text = $"{itens}";
+                // Atualiza os labels
+                label7.Text = faturamento.ToString("C"); // moeda formatada
+                label9.Text = itens.ToString();
                 label10.Text = maisVendidos;
                 label11.Text = maisCategorias;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Erro ao carregar relatório:\n" + ex.ToString());
             }
         }
     }
