@@ -21,17 +21,46 @@ namespace SistemaLogin
             txtCep.MaxLength = 9;
             txtCep.TextChanged += txtCep_TextChanged;
 
+            tabGuias.SelectedIndexChanged += tabControlFornecedor_SelectedIndexChanged;
+
             // Wire up button events
             WireUpEvents();
+        }
+
+        private void CarregarGridFornecedor()
+        {
+            try
+            {
+                var dao = new FornecedorDAO();
+                dgvFornecedor.DataSource = dao.ListarFornecedoresGrid();
+
+                dgvFornecedor.AutoGenerateColumns = true;
+                dgvFornecedor.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvFornecedor.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvFornecedor.ReadOnly = true;
+                dgvFornecedor.MultiSelect = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar fornecedores: " + ex.Message);
+            }
+        }
+
+        private void tabControlFornecedor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabGuias.SelectedTab == tabGerenciar)
+            {
+                CarregarGridFornecedor();
+            }
         }
 
         private void WireUpEvents()
         {
             var btnSalvar = this.Controls.Find("btnSalvar", true).FirstOrDefault() as Button;
             var btnLimpar = this.Controls.Find("btnLimpar", true).FirstOrDefault() as Button;
-            var btnCancelar = this.Controls.Find("btnCancelar", true).FirstOrDefault() as Button;
+            var btnDeletar = this.Controls.Find("btnDeletar", true).FirstOrDefault() as Button;
 
-            if (btnSalvar != null) 
+            if (btnSalvar != null)
             {
 
                 btnSalvar.Click += (s, e) =>
@@ -84,6 +113,8 @@ namespace SistemaLogin
                                 var fornecedorDao = new FornecedorDAO();
                                 fornecedorDao.Adicionar(fornecedor, endereco, telefone);
 
+                                CarregarGridFornecedor();
+
                                 MessageBox.Show("Fornecedor cadastrado com sucesso!");
                                 LimparCampos();
 
@@ -105,9 +136,47 @@ namespace SistemaLogin
                 btnLimpar.Click += (s, e) => LimparCampos();
             }
 
-            if (btnCancelar != null)
+            if (this.btnDeletar != null)
             {
-                btnCancelar.Click += (s, e) => Close();
+                this.btnDeletar.Click += (s, e) =>
+                {
+                    try
+                    {
+                        if (dgvFornecedor.CurrentRow == null)
+                        {
+                            MessageBox.Show("Selecione um fornecedor para deletar");
+                            return;
+                        }
+
+                        var valorId = dgvFornecedor.CurrentRow.Cells["ID"].Value;
+                        if (valorId == null || valorId == DBNull.Value)
+                        {
+                            MessageBox.Show("Não foi possível identificar esse ID");
+                            return;
+                        }
+
+                        int idFornecedor = Convert.ToInt32(valorId);
+
+                        var confirm = MessageBox.Show(
+                            "Deseja realmente excluir o fornecedor seleciador?",
+                            "Confirmar exclusão",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning
+                            );
+
+                        if (confirm != DialogResult.Yes) return;
+
+                        var dao = new FornecedorDAO();
+                        dao.ExcluirFornecedor(idFornecedor);
+
+                        CarregarGridFornecedor();
+                        MessageBox.Show("Fornecedor excluído com sucesso. ");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao excluir fornecedor: " + ex.Message);
+                    }
+                };
             }
         }
 
@@ -189,6 +258,11 @@ namespace SistemaLogin
             txtCep.SelectionLength = 0;
 
             _formatandoCep = false;
+        }
+
+        private void F_Cad_Fornecedor_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
