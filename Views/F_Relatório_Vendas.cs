@@ -26,6 +26,7 @@ namespace SistemaLogin.Views
 
         private void AtualizarFaturamento()
         {
+            int teste = 0;
             try
             {
                 var dao = new VendaDAO();
