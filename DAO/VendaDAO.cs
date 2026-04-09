@@ -113,7 +113,8 @@ namespace SistemaLogin.DAO
                                "WHERE DATE(v.data_venda) = CURDATE()";
                 using (var cmd = new MySqlCommand(query, conn))
                 {
-                    return Convert.ToDecimal(cmd.ExecuteScalar());
+                    var result = cmd.ExecuteScalar();
+                    return result == null || result == DBNull.Value ? 0 : Convert.ToDecimal(result);
                 }
             }
         }
@@ -128,7 +129,8 @@ namespace SistemaLogin.DAO
                                "WHERE DATE(v.data_venda) = CURDATE()";
                 using (var cmd = new MySqlCommand(query, conn))
                 {
-                    return Convert.ToInt32(cmd.ExecuteScalar());
+                    var result = cmd.ExecuteScalar();
+                    return result == null || result == DBNull.Value ? 0 : Convert.ToInt32(result);
                 }
             }
         }

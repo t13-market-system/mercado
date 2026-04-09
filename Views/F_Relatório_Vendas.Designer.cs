@@ -232,6 +232,7 @@
             label9.Size = new Size(38, 15);
             label9.TabIndex = 22;
             label9.Text = "label9";
+            
             // 
             // label10
             // 
@@ -280,7 +281,7 @@
             Name = "F_Relatorio_Vendas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "F_Relatório_Vendas";
-           // Load += F_Relatório_Vendas_Load;
+            //Load += F_Relatorio_Vendas_Load_1;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
