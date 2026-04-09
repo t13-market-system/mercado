@@ -15,6 +15,7 @@ namespace SistemaLogin.DAO
 
         public void Adicionar(Venda venda)
         {
+            int teste1 = 0;
             try
             {
                 using (var conn = DatabaseConnection.GetConnection())
