@@ -42,5 +42,18 @@ namespace SistemaLogin.Views
                 MessageBox.Show("Erro ao carregar relatório:\n" + ex.ToString());
             }
         }
+
+        private void F_Relatorio_Vendas_Load_1(object sender, EventArgs e)
+        {
+            
+                var dao = new VendaDAO();
+                DGV_relatorio.DataSource = dao.ObterItensVendidosHoje();
+
+                // Formatação opcional das colunas
+                DGV_relatorio.Columns["Preço Unitário"].DefaultCellStyle.Format = "C2";
+                DGV_relatorio.Columns["Total"].DefaultCellStyle.Format = "C2";
+                DGV_relatorio.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            
+        }
     }
 }
