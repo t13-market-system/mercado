@@ -31,10 +31,10 @@ namespace SistemaLogin.Views
             {
                 var dao = new VendaDAO();
 
-                decimal faturamento = dao.ObterFaturamentoHoje();
+                decimal faturamento = dao.ObterFaturamentoHoje(new Venda());
                 int itens = dao.ObterQuantidadeItensHoje();
-                string maisVendidos = dao.ObterProdutoMaisVendidoHoje();
-                string maisCategorias = dao.ObterCategoriaMaisVendidaHoje();
+                string maisVendidos = dao.ObterProdutosMaisVendidosHoje();
+                string maisCategorias = dao.ObterCategoriasMaisVendidasHoje();
 
                 label7.Text = $"R$ {faturamento:F2}";
                 label9.Text = $"{itens}";
@@ -43,7 +43,7 @@ namespace SistemaLogin.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("ERRO: " + ex.Message + "\n\n" + ex.InnerException?.Message);
             }
         }
     }

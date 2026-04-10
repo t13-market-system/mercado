@@ -50,6 +50,10 @@
             btn_remover_tudo = new Button();
             pictureBox3 = new PictureBox();
             btn_finalizar = new Button();
+            tb_quantidade_produto = new TextBox();
+            label8 = new Label();
+            cpf_cliente_venda = new TextBox();
+            label9 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -113,7 +117,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Chocolate;
-            label4.Location = new Point(4, 110);
+            label4.Location = new Point(4, 96);
             label4.Name = "label4";
             label4.Size = new Size(186, 25);
             label4.TabIndex = 5;
@@ -124,7 +128,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(7, 139);
+            label5.Location = new Point(7, 123);
             label5.Name = "label5";
             label5.Size = new Size(154, 17);
             label5.TabIndex = 6;
@@ -135,7 +139,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(12, 232);
+            label6.Location = new Point(12, 290);
             label6.Name = "label6";
             label6.Size = new Size(144, 17);
             label6.TabIndex = 7;
@@ -154,7 +158,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(12, 188);
+            button1.Location = new Point(12, 266);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 9;
@@ -165,7 +169,7 @@
             // button2
             // 
             button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(12, 272);
+            button2.Location = new Point(12, 311);
             button2.Name = "button2";
             button2.Size = new Size(86, 63);
             button2.TabIndex = 10;
@@ -176,7 +180,7 @@
             // button3
             // 
             button3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(104, 272);
+            button3.Location = new Point(104, 311);
             button3.Name = "button3";
             button3.Size = new Size(86, 63);
             button3.TabIndex = 11;
@@ -187,7 +191,7 @@
             // button4
             // 
             button4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.Location = new Point(12, 341);
+            button4.Location = new Point(12, 380);
             button4.Name = "button4";
             button4.Size = new Size(86, 63);
             button4.TabIndex = 12;
@@ -198,7 +202,7 @@
             // button5
             // 
             button5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.Location = new Point(104, 341);
+            button5.Location = new Point(104, 380);
             button5.Name = "button5";
             button5.Size = new Size(86, 63);
             button5.TabIndex = 13;
@@ -228,7 +232,7 @@
             // 
             // tb_produtos
             // 
-            tb_produtos.Location = new Point(12, 159);
+            tb_produtos.Location = new Point(12, 145);
             tb_produtos.Name = "tb_produtos";
             tb_produtos.Size = new Size(274, 23);
             tb_produtos.TabIndex = 16;
@@ -282,12 +286,52 @@
             btn_finalizar.UseVisualStyleBackColor = false;
             btn_finalizar.Click += btn_finalizar_Click;
             // 
+            // tb_quantidade_produto
+            // 
+            tb_quantidade_produto.Location = new Point(12, 193);
+            tb_quantidade_produto.Name = "tb_quantidade_produto";
+            tb_quantidade_produto.Size = new Size(274, 23);
+            tb_quantidade_produto.TabIndex = 21;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.White;
+            label8.Location = new Point(7, 171);
+            label8.Name = "label8";
+            label8.Size = new Size(209, 17);
+            label8.TabIndex = 22;
+            label8.Text = "Digite a quantidade do produto:";
+            // 
+            // cpf_cliente_venda
+            // 
+            cpf_cliente_venda.Location = new Point(12, 239);
+            cpf_cliente_venda.Name = "cpf_cliente_venda";
+            cpf_cliente_venda.Size = new Size(274, 23);
+            cpf_cliente_venda.TabIndex = 23;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.ForeColor = Color.White;
+            label9.Location = new Point(7, 219);
+            label9.Name = "label9";
+            label9.Size = new Size(102, 17);
+            label9.TabIndex = 24;
+            label9.Text = "Digite seu CPF:";
+            // 
             // F_Tela_de_Venda
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PeachPuff;
             ClientSize = new Size(800, 450);
+            Controls.Add(label9);
+            Controls.Add(cpf_cliente_venda);
+            Controls.Add(label8);
+            Controls.Add(tb_quantidade_produto);
             Controls.Add(btn_finalizar);
             Controls.Add(pictureBox3);
             Controls.Add(btn_remover_tudo);
@@ -342,5 +386,9 @@
         private Button btn_remover_tudo;
         private PictureBox pictureBox3;
         private Button btn_finalizar;
+        private TextBox tb_quantidade_produto;
+        private Label label8;
+        private TextBox cpf_cliente_venda;
+        private Label label9;
     }
 }

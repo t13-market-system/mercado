@@ -280,7 +280,7 @@
             Name = "F_Relatorio_Vendas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "F_Relatório_Vendas";
-           // Load += F_Relatório_Vendas_Load;
+            Load += F_Relatorio_Vendas_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
