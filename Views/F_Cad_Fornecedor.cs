@@ -5,6 +5,9 @@ using System.Windows.Forms;
 using SistemaLogin.Models;
 using SistemaLogin.UI;
 using SistemaLogin.DAO;
+using SistemaLogin.Views;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Linq;
 
 namespace SistemaLogin
 {
@@ -13,6 +16,7 @@ namespace SistemaLogin
         public F_Cad_Fornecedor()
         {
             InitializeComponent();
+            dgvFornecedor.ClearSelection();
             PreencherCampos();
 
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -51,14 +55,15 @@ namespace SistemaLogin
             if (tabGuias.SelectedTab == tabGerenciar)
             {
                 CarregarGridFornecedor();
-            }
+            };
         }
 
         private void WireUpEvents()
         {
-            var btnSalvar = this.Controls.Find("btnSalvar", true).FirstOrDefault() as Button;
-            var btnLimpar = this.Controls.Find("btnLimpar", true).FirstOrDefault() as Button;
-            var btnDeletar = this.Controls.Find("btnDeletar", true).FirstOrDefault() as Button;
+            var btnSalvar = this.Controls.Find("btnSalvar", true).FirstOrDefault() as System.Windows.Forms.Button;
+            var btnLimpar = this.Controls.Find("btnLimpar", true).FirstOrDefault() as System.Windows.Forms.Button;
+            var btnDeletar = this.Controls.Find("btnDeletar", true).FirstOrDefault() as System.Windows.Forms.Button;
+            var btnEdit = this.Controls.Find("btnEdit", true).FirstOrDefault() as System.Windows.Forms.Button;
 
             if (btnSalvar != null)
             {
@@ -85,25 +90,23 @@ namespace SistemaLogin
                             Nome_Fornecedor = txtNome.Text.Trim(),
                             CNPJ_Fornecedor = txtCnpj.Text.Trim(),
                             Email_Fornecedor = txtEmail.Text.Trim(),
-
-                        };
-
-                        var telefone = new TelefoneFornecedor
-                        {
                             Telefone_Fornecedor = txtTelefone.Text.Trim(),
-                        };
-
-                        var endereco = new Endereco_Fornecedor
-                        {
                             Pais_Fornecedor = "Brasil",
                             Estado_Fornecedor = cmbEstado.Text.Trim(),
                             Cidade_Fornecedor = txtCidade.Text.Trim(),
                             Bairro_Fornecedor = txtBairro.Text.Trim(),
-                            Rua_Fornecedor = textBox7.Text.Trim(),
+                            Rua_Fornecedor = txtRua.Text.Trim(),
                             Numero_Fornecedor = txtNumero.Text.Trim(),
-                            CEP_Fornecedor = txtCep.Text.Trim(),
-                            Complemento_Fornecedor = txtComplemento.Text.Trim(),
+                            Cep_Fornecedor = txtCep.Text.Trim(),
+                            Complemento_Fornecedor = txtComplemento.Text.Trim()
                         };
+
+                        var dao = new FornecedorDAO();
+                        dao.Atualizar(fornecedor);
+
+                        MessageBox.Show("Fornecedor atualizado!");
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
 
                         using (var conn = DatabaseConnection.GetConnection())
                         {
@@ -111,12 +114,12 @@ namespace SistemaLogin
 
                             {
                                 var fornecedorDao = new FornecedorDAO();
-                                fornecedorDao.Adicionar(fornecedor, endereco, telefone);
+                                fornecedorDao.Adicionar(fornecedor);
 
                                 CarregarGridFornecedor();
 
                                 MessageBox.Show("Fornecedor cadastrado com sucesso!");
-                                LimparCampos();
+                                //LimparCampos();
 
                             }
 
@@ -130,12 +133,34 @@ namespace SistemaLogin
                 };
             };
 
+            if (btnEdit != null)
+            {
+                btnEdit.Click += (s, e) =>
+                {
+                   if (dgvFornecedor.CurrentRow == null)
+                    {
+                        MessageBox.Show("Selecione um fornecedor para editar. ");
+                        return;
+                    }
 
+                    int idFornecedor = Convert.ToInt32(dgvFornecedor.CurrentRow.Cells["ID"].Value);
+
+                    using (var frm = new F_Edit_Fornecedor(idFornecedor))
+                    {
+                        if (frm.ShowDialog() == DialogResult.OK)
+                        {
+                            CarregarGridFornecedor();
+                        }
+                    }
+                };
+            }
+
+/*
             if (btnLimpar != null)
             {
                 btnLimpar.Click += (s, e) => LimparCampos();
             }
-
+*/
             if (this.btnDeletar != null)
             {
                 this.btnDeletar.Click += (s, e) =>
@@ -180,6 +205,7 @@ namespace SistemaLogin
             }
         }
 
+        /*
         private void LimparCampos()
         {
             // Encontra todos os TextBox e limpa
@@ -191,6 +217,7 @@ namespace SistemaLogin
                 }
             }
         }
+        */
 
         private IEnumerable<Control> GetAllControls()
         {
