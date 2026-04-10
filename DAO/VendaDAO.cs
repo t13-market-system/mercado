@@ -218,6 +218,67 @@ namespace SistemaLogin.DAO
             }
 
         }
+        public void FinalizarVenda(List<(int idProduto, int quantidade)> itens, int idFormaPagamento, string cpf)
+        {
+            using (var conn = DatabaseConnection.GetConnection())
+            {
+                conn.Open();
+                using (var transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        // 1. Cria o pedido com CPF
+                        int idPedido;
+                        using (var cmd = new MySqlCommand("INSERT INTO pedido (cpf) VALUES (@cpf)", conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@cpf", cpf);
+                            cmd.ExecuteNonQuery();
+                            idPedido = (int)cmd.LastInsertedId;
+                        }
+
+                        // 2. Cria a venda
+                        using (var cmd = new MySqlCommand(
+                            "INSERT INTO venda (id_pedido, data_venda, id_forma_pagamento) VALUES (@idPedido, NOW(), @idFormaPagamento)",
+                            conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@idPedido", idPedido);
+                            cmd.Parameters.AddWithValue("@idFormaPagamento", idFormaPagamento);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        // 3. Insere cada produto com quantidade correta
+                        foreach (var (idProduto, quantidade) in itens)
+                        {
+                            decimal preco;
+                            using (var cmd = new MySqlCommand(
+                                "SELECT preco_produto FROM produto WHERE id_produto = @id", conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@id", idProduto);
+                                preco = Convert.ToDecimal(cmd.ExecuteScalar());
+                            }
+
+                            using (var cmd = new MySqlCommand(
+                                "INSERT INTO pedido_item (id_pedido, id_produto, quantidade_item, preco_unitario) VALUES (@idPedido, @idProduto, @quantidade, @preco)",
+                                conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@idPedido", idPedido);
+                                cmd.Parameters.AddWithValue("@idProduto", idProduto);
+                                cmd.Parameters.AddWithValue("@quantidade", quantidade);
+                                cmd.Parameters.AddWithValue("@preco", preco);
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+        }
 
     }
 
